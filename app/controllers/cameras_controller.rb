@@ -13,4 +13,9 @@ class CamerasController < ApplicationController
     @camera = Camera.find(params[:id])
   end
 
+  def new
+    @camera = Camera.new
+
+  end
+
 end
