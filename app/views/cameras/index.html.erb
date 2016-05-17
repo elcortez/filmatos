@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container text-center padded">
 
   <!-- Beginning of filter bar -->
     <br>
@@ -13,16 +13,30 @@
       <%= text_field_tag :query_four, params[:query_four] %>
       <%= submit_tag 'Search for it!', class: "btn btn-danger" %>
     <% end %>
-  <!-- End of filter bar -->
-  <h1> See all cameras </h1>
-  <ul>
-    <% @cameras.each do |camera| %>
-    <li>
-      <%= camera.category %> - <%= camera.brand %> - <%= camera.description %> - <%= camera.price %>€ /per day - <%= link_to 'See details', camera_path(camera) %>.
-    </li>
-    <% end %>
-  </ul>
 </div>
+  <!-- End of filter bar -->
+<div class="wrapper">
+  <div class="container text-center">
+  <h1> See results </h1>
+    <div class="row">
+    <% @cameras.each do |camera| %>
+    <div class="col-xs-12 col-md-3">
+      <div class="padded">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_url 'camera.jpg' %>);">
+          <div class="card-category"><p><%= camera.category %></p></div>
+          <div class="card-brand"><p><%= camera.brand %></p></div>
+          <div class="card-price"><p><%= camera.price %>€ per day</p></div>
+          <a class="card-link" href="<%=camera_path(camera)%>" ></a>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+</div>
+
+
+
 
 
 
