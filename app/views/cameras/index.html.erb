@@ -1,0 +1,23 @@
+<div class="container">
+
+  <!-- Beginning of filter bar -->
+    <br>
+    <%= form_tag cameras_path, :method => :get do %>
+      <label for="description">Description</label>
+      <%= text_field_tag :query_one, params[:query_one] %>
+      <label for="brand">Brand</label>
+      <%= text_field_tag :query_two, params[:query_two] %>
+      <!-- <label for="cagegory">Category</label> -->
+     <!--  text_field_tag :query_three, params[:query_three] -->
+      <label for="price">Price range</label>
+      <%= text_field_tag :query_four, params[:query_four] %>
+      <%= submit_tag 'Search for it!', class: "btn btn-danger" %>
+    <% end %>
+  <!-- End of filter bar -->
+  <h1> See all cameras </h1>
+</div>
+
+
+
+
+
