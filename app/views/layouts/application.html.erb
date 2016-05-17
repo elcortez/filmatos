@@ -9,10 +9,11 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
   </head>
   <body>
+    <%= render 'shared/flashes' %>
     <%= render 'shared/navbar' %>
     <%= yield %>
     <%= javascript_include_tag 'application' %>
-    <%= cloudinary_js_config %>
-    <%= render 'shared/flashes' %>
+    <%# cloudinary_js_config %>
+    <%= yield :after_js %>
   </body>
 </html>
