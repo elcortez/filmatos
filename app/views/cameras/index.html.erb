@@ -15,6 +15,13 @@
     <% end %>
   <!-- End of filter bar -->
   <h1> See all cameras </h1>
+  <ul>
+    <% @cameras.each do |camera| %>
+    <li>
+      <%= camera.category %> - <%= camera.brand %> - <%= camera.description %> - <%= camera.price %>€ /per day.
+    </li>
+    <% end %>
+  </ul>
 </div>
 
 
