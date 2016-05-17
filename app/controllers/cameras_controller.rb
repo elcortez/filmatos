@@ -6,5 +6,6 @@ class CamerasController < ApplicationController
     else
       @cameras = Camera.search(params[:query_one])
     end
+    @cameras = @cameras.order('category ASC')
   end
 end
