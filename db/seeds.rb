@@ -6,14 +6,16 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
 Camera.destroy_all
 
 50.times do
   camera = Camera.new({
     category: ["Camera", "Accessory", "Lense", "Tripod"].sample,
     brand: ["Canon", "Nikkon", "Arri", "Aaton", "Red", "Black magic"].sample,
-    description: Faker::Lorem.sentence,
-    price: Faker::Commerce.price
+    description: 'test', #Faker::Lorem.sentence,
+    price: 20, #Faker::Commerce.price
+    user_id: 1
     })
   camera.save
 end
