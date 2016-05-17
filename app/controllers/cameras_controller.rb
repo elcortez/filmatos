@@ -11,7 +11,17 @@ class CamerasController < ApplicationController
   end
 
   def new
+    @user = User.find(params[:user_id])
     @camera = Camera.new
+  end
+
+  def create
+    @camera = Camera.new(camera_params)
+    @user = User.find(params[:user_id])
+    @camera.user = current_user
+    @camera.save
+    redirect_to cameras_path
+
   end
 
   private
@@ -31,5 +41,10 @@ class CamerasController < ApplicationController
       @cameras = @cameras.order('category ASC')
     @cameras.all
   end
+
+  def camera_params
+    params.require(:camera).permit(:brand, :category, :description, :price, :photo)
+  end
+
 
 end

@@ -4,10 +4,12 @@ Rails.application.routes.draw do
   get 'test' => 'pages#home'
   root to: 'pages#home'
 
-  resources :cameras do
+  resources :cameras, only: [:index, :show] do
     resources :bookings, only: [:create]
   end
 
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    resources :cameras, only: [:new, :create, :edit, :update, :destroy]
+  end
 end
 
