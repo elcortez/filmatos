@@ -6,7 +6,7 @@
     <p>Find all your cameras around you</p>
     <!-- Beginning of filter bar -->
       <br>
-      <div class="form form-control">
+      <div class="form">
       <%= form_tag cameras_path, :method => :get do %>
         <%= text_field_tag :description %>
         <%= submit_tag 'Search for it!', class: "btn btn-danger" %>
