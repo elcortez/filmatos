@@ -7,5 +7,11 @@ class Camera < ActiveRecord::Base
   validates :description, presence: true
   validates :price, presence: true
 
-  scope :search, ->(term) { where("description iLIKE ? ", "%#{term}%") }
+  scope :search_with_description, ->(term) { where("description iLIKE ? ", "%#{term}%") }
+
+  scope :search_with_brand, ->(term) { where("brand = ?", "#{term}") }
+  scope :search_with_category, ->(term) { where("category = ?", "#{term}") }
+  scope :search_with_price, ->(min, max) { where('price >= ? AND price <= ?', min.to_i, max.to_i) }
 end
+
+
