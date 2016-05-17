@@ -1,2 +1,13 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <h1>Pages#home</h1>
+
+  <!-- Beginning of filter bar -->
+    <br>
+    <%= form_tag cameras_path, :method => :get do %>
+      <%= text_field_tag :query_one %>
+      <%= submit_tag 'Search for it!', class: "btn btn-danger" %>
+    <% end %>
+  <!-- End of filter bar -->
+</div>
+
+

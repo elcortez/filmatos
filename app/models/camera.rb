@@ -6,4 +6,6 @@ class Camera < ActiveRecord::Base
   validates :category, presence: true, inclusion: { in: ["camera", "filter", "lense", "tripod"]}
   validates :description, presence: true
   validates :price, presence: true
+
+  scope :search, ->(term) { where("description iLIKE ? ", "%#{term}%") }
 end
