@@ -28,7 +28,12 @@
   <!-- End of filter bar -->
 <div class="wrapper">
   <div class="container text-center">
-  <h1> See results </h1>
+  <% if @cameras.count <= 1 %>
+    <% result_syntax = 'result' %>
+  <% else %>
+    <% result_syntax = 'results' %>
+  <% end %>
+  <h1> We've got <%= @cameras.count %> <%= result_syntax %> </h1>
     <div class="row">
     <% @cameras.each do |camera| %>
     <div class="col-xs-12 col-md-3">
