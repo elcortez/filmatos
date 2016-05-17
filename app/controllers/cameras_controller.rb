@@ -2,6 +2,8 @@ class CamerasController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     load_cameras
+    @categories = Camera.categories
+    @brands = Camera.brands
   end
 
   def show
@@ -25,6 +27,9 @@ class CamerasController < ApplicationController
   private
 
   def load_cameras
+    params[:category] ||= []
+    params[:brand] ||= []
+
     @cameras = Camera.where(nil)
       @cameras = @cameras.search_with_description(params[:description]) if params[:description].present?
       @cameras = @cameras.search_with_brand(params[:brand]) if params[:brand].present?

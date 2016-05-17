@@ -1,12 +1,19 @@
 <div class="container text-center padded">
-
   <!-- Beginning of filter bar -->
     <br>
     <%= form_tag cameras_path, :method => :get do %>
       <label for="brand">Brand</label>
-      <%= text_field_tag :brand, params[:brand] %>
+      <% @brands.each do |brand| %>
+        <%= check_box_tag('brand[]', brand, params[:brand].include?(brand)) %>
+        <%= label_tag('brand[]', brand) %>
+      <% end %>
+
       <label for="category">Category</label>
-      <%= text_field_tag :category, params[:category] %>
+      <% @categories.each do |category| %>
+        <%= check_box_tag('category[]', category, params[:category].include?(category)) %>
+        <%= label_tag('category[]', category) %>
+      <% end %>
+
       <!-- <label for="cagegory">Category</label> -->
      <!--  text_field_tag :query_three, params[:query_three] -->
       <label for="price_min">Minimum price</label>
