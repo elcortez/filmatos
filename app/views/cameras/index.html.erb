@@ -18,7 +18,7 @@
   <ul>
     <% @cameras.each do |camera| %>
     <li>
-      <%= camera.category %> - <%= camera.brand %> - <%= camera.description %> - <%= camera.price %>€ /per day.
+      <%= camera.category %> - <%= camera.brand %> - <%= camera.description %> - <%= camera.price %>€ /per day - <%= link_to 'See details', camera_path(camera) %>.
     </li>
     <% end %>
   </ul>

@@ -1,5 +1,5 @@
 class CamerasController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index]
+  skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     if !params[:query_one]
       @cameras = Camera.all
@@ -8,4 +8,9 @@ class CamerasController < ApplicationController
     end
     @cameras = @cameras.order('category ASC')
   end
+
+  def show
+    @camera = Camera.find(params[:id])
+  end
+
 end
