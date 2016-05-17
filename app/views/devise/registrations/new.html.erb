@@ -10,7 +10,9 @@
      <%= f.input :first_name, required: true, autofocus: true %>
      <%= f.input :last_name, required: true, autofocus: true %>
      <%= f.input :phone_number, required: false, autofocus: true %>
+     <%= f.input :photo, as: :attachinary %>
   </div>
+
 
   <div class="form-actions">
     <%= f.button :submit, "Sign up" %>
