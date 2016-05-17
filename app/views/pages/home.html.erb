@@ -14,7 +14,9 @@
       </div>
     <!-- End of filter bar -->
     <div class="btn-group">
-      <%= link_to "Add a new camera", new_camera_path %><br />
+      <% if user_signed_in? %>
+        <%= link_to "Add a new camera", new_user_camera_path(current_user.id) %>
+      <% end %>
     </div>
 
   </div>

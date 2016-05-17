@@ -26,7 +26,11 @@
     <% @cameras.each do |camera| %>
     <div class="col-xs-12 col-md-3">
       <div class="padded">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_url 'camera.jpg' %>);">
+        <% if camera.photo? %>
+          <%= cl_image_tag camera.photo.path, width: 200, height: 300, crop: :fill %>
+        <% else %>
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_url 'camera.jpg' %>);">
+        <% end %>
           <div class="card-category"><p><%= camera.category %></p></div>
           <div class="card-brand"><p><%= camera.brand %></p></div>
           <div class="card-price"><p><%= camera.price %>€ per day</p></div>
