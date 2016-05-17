@@ -3,14 +3,18 @@
   <!-- Beginning of filter bar -->
     <br>
     <%= form_tag cameras_path, :method => :get do %>
-      <label for="description">Description</label>
-      <%= text_field_tag :query_one, params[:query_one] %>
       <label for="brand">Brand</label>
-      <%= text_field_tag :query_two, params[:query_two] %>
+      <%= text_field_tag :brand, params[:brand] %>
+      <label for="category">Category</label>
+      <%= text_field_tag :category, params[:category] %>
       <!-- <label for="cagegory">Category</label> -->
      <!--  text_field_tag :query_three, params[:query_three] -->
-      <label for="price">Price range</label>
-      <%= text_field_tag :query_four, params[:query_four] %>
+      <label for="price_min">Minimum price</label>
+      <%= text_field_tag :price_min, params[:price_min] %>
+      <label for="price_max">Maximum price</label>
+      <%= text_field_tag :price_max, params[:price_max] %>
+      <label for="description">Description</label>
+      <%= text_field_tag :description, params[:description] %>
       <%= submit_tag 'Search for it!', class: "btn btn-danger" %>
     <% end %>
 </div>
