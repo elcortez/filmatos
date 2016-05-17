@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
   has_many :bookings
   has_many :cameras
   # devise validates itself everything?
+  has_attachment :photo
 end
