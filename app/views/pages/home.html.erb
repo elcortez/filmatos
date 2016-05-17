@@ -7,7 +7,7 @@
     <!-- Beginning of filter bar -->
       <br>
       <div class="form">
-      <%= form_tag cameras_path, :method => :get do %>
+        <%= form_tag cameras_path, :method => :get do %>
         <%= text_field_tag :description %>
         <%= submit_tag 'Search for it!', class: "btn btn-danger" %>
       <% end %>
