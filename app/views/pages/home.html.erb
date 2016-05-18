@@ -15,7 +15,7 @@
     <!-- End of filter bar -->
     <div class="btn-group">
       <% if user_signed_in? %>
-        <%= link_to "Add a new camera", new_user_camera_path(current_user.id) %>
+        <%= link_to "Add a new camera", new_user_camera_path(current_user.id), target: "_blank" %>
       <% end %>
     </div>
 
