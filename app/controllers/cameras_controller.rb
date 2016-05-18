@@ -23,6 +23,8 @@ class CamerasController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @camera = Camera.new
+    @brands = Camera.brands
+    @categories = Camera.categories
   end
 
   def create
@@ -31,7 +33,13 @@ class CamerasController < ApplicationController
     @camera.user = current_user
     @camera.save
     redirect_to cameras_path
+  end
 
+  def destroy
+    @camera = Camera.find(params[:id])
+    @camera.destroy
+    @user = current_user
+    redirect_to user_path(@user)
   end
 
   private

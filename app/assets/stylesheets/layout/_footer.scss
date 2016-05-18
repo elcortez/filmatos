@@ -1,1 +1,21 @@
 // Your footer style
+.footer {
+  background: #295271;
+  color: white;
+}
+
+.footer h4 {
+  margin: 15px;
+}
+.footer li {
+  margin: 0 10px;
+}
+.footer a {
+  color: white;
+  font-size: 20px;
+  padding: 10px;
+}
+.footer a:hover {
+  color: #C2DDEB;
+
+}

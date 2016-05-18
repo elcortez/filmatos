@@ -1,0 +1,35 @@
+.tabs {
+  background: #587D99;
+  display: flex;
+  padding: 10px 10px 0 10px;
+  margin-top: 70px;
+}
+.tabs a {
+  color: white;
+}
+.tabs a:hover {
+  cursor: pointer;
+  text-decoration: none;
+  opacity: 0.8;
+}
+.tabs h3 {
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 0;
+}
+.tab {
+  background: #295271;
+  flex: 0 0 25%;
+  text-align: center;
+  padding: 20px 0;
+}
+.tab:first-child {
+  border-radius: 10px 0 0 0;
+}
+.tab:last-child {
+  border-radius: 0 10px 0 0;
+}
+.tab.active {
+  background: white;
+  color: black;
+}

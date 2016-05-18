@@ -1,27 +1,51 @@
-<div class="container">
- <h1>Voici mon dashboard</h1>
+
+<div class="tabs">
+  <a class="tab active" data-target="#profile">
+    <h3>My profile</h3>
+  </a>
+  <a class="tab" data-target="#my-camera-offer">
+    <h3>My Product Offer</h3>
+  </a>
+  <a class="tab" data-target="#my-bookings">
+    <h3>My Product Booked</h3>
+  </a>
+  <a class="tab" data-target="#my-rentals">
+    <h3>My Rentals</h3>
+  </a>
+</div>
+<div class="container text-center">
+
+ <div class="tab-content unstyled-list" id="profile">
  <h2> My informations </h2>
- <ul>
-   <li>First name: <%= @user.first_name %></li>
-   <li>Last name: <%= @user.last_name %></li>
-   <li>Phone number: <%= @user.phone_number %></li>
-   <li>Email: <%= @user.email %></li>
-   <li>Address: <%= @user.address %></li>
- </ul>
 
-  <h2> The cameras I own </h2>
-  <ol>
-   <% @user.cameras.each do |camera| %>
-   <li>
-     <p> Brand: <%= camera.brand %></p>
-     <p> Category: <%= camera.category %></p>
-     <p> Price: <%= camera.price %>€/day</p>
-     <p> Description: <%= camera.description %></p>
-   </li>
-   <% end %>
-  </ol>
+   <p>First name: <%= @user.first_name %></p>
+   <p>Last name: <%= @user.last_name %></p>
+   <p>Phone number: <%= @user.phone_number %></p>
+   <p>Email: <%= @user.email %></p>
+   <p>Address: <%= @user.address %></p>
 
-  <h2> The cameras I rented as a renter </h2>
+ </div>
+
+  <div class="tab-content" id="my-camera-offer">
+    <h2> My Product Offer </h2>
+     <div class="row">
+     <% @user.cameras.each do |camera| %>
+       <div class="col-xs-12 col-md-3">
+        <div class="padded">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_url 'camera.jpg' %>)">
+          <div class="card-brand"><p> Brand: <%= camera.brand %></p></div>
+          <div class="card-category"><p><%= camera.category %></p></div>
+          <div class="card-price"><p> Price: <%= camera.price %>€/day</p></div>
+        </div>
+        <%= link_to '<i class="fa fa-trash" aria-hidden="true"></i>'.html_safe, user_camera_path(current_user, camera), method: :delete, data: { confirm: "Are you sure to delete this camera?" }%>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  </div>
+
+  <div class="tab-content" id="my-bookings">
+  <h2> My Product Booked </h2>
   <ol>
    <% @user.bookings.each do |booking| %>
    <li>
@@ -39,9 +63,10 @@
    </li>
    <% end %>
   </ol>
+  </div>
 
-  <h2> The cameras I rented as an owner </h2>
-
+  <div class="tab-content" id="my-rentals">
+  <h2> My Rentals </h2>
   <ol>
     <% @user.cameras.each do |camera| %>
       <% if camera.bookings.first %>
@@ -68,6 +93,7 @@
       <% end %>
     <% end %>
   </ol>
+  </div>
 
 </div>
 
