@@ -1,5 +1,8 @@
 <div class="container text-center padded">
   <!-- Beginning of filter bar -->
+    <div class="col-md-6">
+    <br>
+    <br>
     <br>
     <%= form_tag cameras_path, :method => :get do %>
       <label for="brand">Brand</label>
@@ -24,10 +27,12 @@
       <%= text_field_tag :description, params[:description] %>
       <%= submit_tag 'Search for it!', class: "btn btn-danger" %>
     <% end %>
+    </div>
 </div>
   <!-- End of filter bar -->
 <div class="wrapper">
   <div class="container text-center">
+  <div class="col-md-6">
   <% if @cameras.count <= 1 %>
     <% result_syntax = 'result' %>
   <% else %>
@@ -35,8 +40,13 @@
   <% end %>
   <h1> We've got <%= @cameras.count %> <%= result_syntax %> </h1>
     <div class="row">
+      <div class="col-md-6 col-md-offset-5 map">
+        <div id="map" style="height: 100vh;"></div>
+      </div>
+
+
       <% @cameras.each do |camera| %>
-      <div class="col-xs-12 col-md-3">
+      <div class="col-xs-12 col-md-6">
         <div class="padded">
           <% if camera.photo? %>
             <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path camera.photo.path %>)">
@@ -52,15 +62,15 @@
             <a class="card-link" href="<%=camera_path(camera)%>" ></a>
           <% end %>
           </div>
+
         </div>
       </div>
       <% end %>
       </div>
+      </div>
     </div>
   </div>
 </div>
-
-<div id="map" style="width: 100%; height: 600px;"></div>
 
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
