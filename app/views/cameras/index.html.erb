@@ -64,13 +64,13 @@
               <div class="card-category"><p><%= camera.category %></p></div>
               <div class="card-brand"><p><%= camera.brand %></p></div>
               <div class="card-price"><p><%= camera.price %>€ per day</p></div>
-              <a class="card-link" href="<%=camera_path(camera)%>" ></a>
+              <a class="card-link" href="<%=camera_path(camera)%>", target="_blank" ></a>
           <% else %>
             <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_url 'camera.jpg' %>)">
             <div class="card-category"><p><%= camera.category %></p></div>
             <div class="card-brand"><p><%= camera.brand %></p></div>
             <div class="card-price"><p><%= camera.price %>€ per day</p></div>
-            <a class="card-link" href="<%=camera_path(camera)%>" ></a>
+            <a class="card-link" href="<%=camera_path(camera)%>", target="_blank" ></a>
           <% end %>
           </div>
 
