@@ -1,0 +1,22 @@
+<div class="container">
+ <h1>Voici mon dashboard</h1>
+ <ul>
+   <li>First name: <%= @user.first_name %></li>
+   <li>Last name: <%= @user.last_name %></li>
+   <li>Phone number: <%= @user.phone_number %></li>
+   <li>Email: <%= @user.email %></li>
+   <li>Address: <%= @user.address %></li>
+ </ul>
+
+ <ol>
+   <% @user.cameras.each do |camera| %>
+   <li>
+     <p> Brand: <%= camera.brand %></p>
+     <p> Category: <%= camera.category %></p>
+     <p> Price: <%= camera.price %>€/day</p>
+     <p> Description: <%= camera.description %></p>
+   </li>
+   <% end %>
+ </ol>
+</div>
+
