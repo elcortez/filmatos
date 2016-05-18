@@ -1,4 +1,5 @@
 <div class="container text-center padded">
+
   <!-- Beginning of filter bar -->
     <div class="col-md-6">
     <br>
@@ -39,23 +40,42 @@
     <% end %>
     </div>
     </div>
-</div>
-  <!-- End of filter bar -->
+
+ <!-- End of filter bar -->
 <div class="wrapper">
-  <div class="container text-center">
-  <div class="col-md-6">
-  <% if @cameras.count <= 1 %>
-    <% result_syntax = 'result' %>
-  <% else %>
-    <% result_syntax = 'results' %>
-  <% end %>
-  <h1> We've got <%= @cameras.count %> <%= result_syntax %> </h1>
-    <div class="row">
-      <div class="col-md-6 col-md-offset-5 map">
-        <div id="map" style="height: 100vh;"></div>
-      </div>
+ <div class="container text-center">
+ <div class="col-md-6">
+ <% if @cameras.count <= 1 %>
+   <% result_syntax = 'result' %>
+ <% else %>
+   <% result_syntax = 'results' %>
+ <% end %>
+ <h1> We've got <%= @cameras.count %> <%= result_syntax %> </h1>
+   <div class="row">
+     <div class="col-md-6 col-md-offset-5 map">
+       <div id="map" style="height: 100vh;"></div>
+     </div>
 
 
+<<<<<<< HEAD
+     <% @cameras.each do |camera| %>
+     <div class="col-xs-12 col-md-6">
+       <div class="padded">
+         <% if camera.photo? %>
+           <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path camera.photo.path %>)">
+             <div class="card-category"><p><%= camera.category %></p></div>
+             <div class="card-brand"><p><%= camera.brand %></p></div>
+             <div class="card-price"><p><%= camera.price %>€ per day</p></div>
+             <a class="card-link" href="<%=camera_path(camera)%>" ></a>
+         <% else %>
+           <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_url 'camera.jpg' %>)">
+           <div class="card-category"><p><%= camera.category %></p></div>
+           <div class="card-brand"><p><%= camera.brand %></p></div>
+           <div class="card-price"><p><%= camera.price %>€ per day</p></div>
+           <a class="card-link" href="<%=camera_path(camera)%>" ></a>
+         <% end %>
+         </div>
+=======
       <% @cameras.each do |camera| %>
       <div class="col-xs-12 col-md-6">
         <div class="padded">
@@ -73,32 +93,26 @@
             <a class="card-link" href="<%=camera_path(camera)%>", target="_blank" ></a>
           <% end %>
           </div>
+>>>>>>> master
 
-        </div>
-      </div>
-      <% end %>
-      </div>
-      </div>
-    </div>
-  </div>
+       </div>
+     </div>
+     <% end %>
+     </div>
+     </div>
+   </div>
+ </div>
 </div>
 
 <% content_for(:after_js) do %>
-  <%= javascript_tag do %>
-    $(document).on('ready', function() {
-      handler = Gmaps.build('Google');
-      handler.buildMap({ internal: { id: 'map' } }, function(){
-        markers = handler.addMarkers(<%= raw @markers.to_json %>);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-      });
-    })
-  <% end %>
+ <%= javascript_tag do %>
+   $(document).on('ready', function() {
+     handler = Gmaps.build('Google');
+     handler.buildMap({ internal: { id: 'map' } }, function(){
+       markers = handler.addMarkers(<%= raw @markers.to_json %>);
+       handler.bounds.extendWith(markers);
+       handler.fitMapToBounds();
+     });
+   })
+ <% end %>
 <% end %>
-
-
-
-
-
-
-

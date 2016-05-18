@@ -1,0 +1,36 @@
+.card_stats {
+  border-top: 0px;
+  border-radius: 0 0 2px 2px;
+  position: relative;
+  height: 40px;
+  padding-top: 10px;
+  padding-bottom: 2px;
+}
+
+.stats-reviews {
+  float: left;
+  padding: 8px 20px;
+  border-right: 1px solid #b4bbc6;
+  height: 40px;
+  padding-right: 32px;
+  padding-left: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stats-share {
+  float: right;
+  padding: 8px 1px;
+  border-left: 1px solid #b4bbc6;
+  height: 40px;
+  padding-right: 38px;
+}
+
+.stats-name {
+  display: inline-block;
+  padding: 0px 20px;
+  height: 40px;
+  padding-right: 13px;
+  padding-left: 4px;
+}

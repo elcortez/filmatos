@@ -56,16 +56,15 @@
 //card show
 
 .card-white {
-  height: 400px;
   width: 700px;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
   background-size: cover !important;
   color: black;
   background: white;
   position: relative;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
+  padding-top: 20px;
   border-radius: 5px;
-  // box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 
@@ -76,8 +75,8 @@
   color: black;
   background: white;
   position: relative;
-  padding-bottom: 10px;
   border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 .card-form {
@@ -89,4 +88,18 @@
   padding: 20px 0;
   border-radius: 2px;
   position: fixed;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.card-stats {
+  width: 700px;
+  background-size: cover !important;
+  color: black;
+  background: white;
+  position: relative;
+  padding-bottom: 0px;
+  padding-top: 10px;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  display: inline-block;
 }
