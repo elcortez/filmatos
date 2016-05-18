@@ -1,5 +1,7 @@
 class CamerasController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
+  layout "map", only: [:index]
+
   def index
     load_cameras
     @categories = Camera.categories
@@ -15,6 +17,7 @@ class CamerasController < ApplicationController
 
   def show
     @camera = Camera.find(params[:id])
+    @booking = Booking.new
   end
 
   def new
