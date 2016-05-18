@@ -4,29 +4,40 @@
     <br>
     <br>
     <br>
+    <div class="form"></div>
     <%= form_tag cameras_path, :method => :get do %>
+      <label for="description">Description</label>
+      <%= text_field_tag :description, params[:description], { class: "form-control"} %>
+      <br>
+      <label for="price_min">Minimum price</label>
+      <%= text_field_tag :price_min, params[:price_min] %>
+      <br>
+      <label for="price_max">Maximum price</label>
+      <%= text_field_tag :price_max, params[:price_max] %>
+      <br><br>
       <label for="brand">Brand</label>
-      <% @brands.each do |brand| %>
-        <%= check_box_tag('brand[]', brand, params[:brand].include?(brand)) %>
-        <%= label_tag('brand[]', brand) %>
-      <% end %>
-
+      <br>
+      <div class="brand-category">
+        <% @brands.each do |brand| %>
+          <%= check_box_tag('brand[]', brand, params[:brand].include?(brand)) %>
+          <%= label_tag('brand[]', brand) %>
+        <% end %>
+      </div>
+      <br><br>
       <label for="category">Category</label>
+      <br>
+      <div class="brand-category">
       <% @categories.each do |category| %>
         <%= check_box_tag('category[]', category, params[:category].include?(category)) %>
         <%= label_tag('category[]', category) %>
       <% end %>
-
+      </div>
+      <br><br>
       <!-- <label for="cagegory">Category</label> -->
      <!--  text_field_tag :query_three, params[:query_three] -->
-      <label for="price_min">Minimum price</label>
-      <%= text_field_tag :price_min, params[:price_min] %>
-      <label for="price_max">Maximum price</label>
-      <%= text_field_tag :price_max, params[:price_max] %>
-      <label for="description">Description</label>
-      <%= text_field_tag :description, params[:description] %>
       <%= submit_tag 'Search for it!', class: "btn btn-danger" %>
     <% end %>
+    </div>
     </div>
 </div>
   <!-- End of filter bar -->
