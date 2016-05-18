@@ -4,6 +4,13 @@ class CamerasController < ApplicationController
     load_cameras
     @categories = Camera.categories
     @brands = Camera.brands
+
+
+    # Let's DYNAMICALLY build the markers for the view.
+    @markers = Gmaps4rails.build_markers(@cameras) do |camera, marker|
+      marker.lat camera.user.latitude
+      marker.lng camera.user.longitude
+    end
   end
 
   def show

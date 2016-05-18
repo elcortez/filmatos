@@ -7,4 +7,7 @@ class User < ActiveRecord::Base
   has_many :cameras
   # devise validates itself everything?
   has_attachment :photo
+
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 end
