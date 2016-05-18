@@ -16,13 +16,28 @@
       <div class="col-xs-12 col-sm-3 col-sm-offset-5">
         <div class="padded">
           <div class="card-form">
-            <%= form_tag cameras_path, :method => :get do %>
-            <%= text_field_tag :query_one, nil, :placeholder => 'From...' %>
-            <%= text_field_tag :query_one, nil, :placeholder => 'To...' %>
-            <h1><%= @camera.price %>€</h1>
+
+
+            <h2>Book this item</h2>
+            <h3><%= @camera.price %>€</h3>
             <p>Average price/day</p>
-            <%= submit_tag 'BOOK IT!',  class: "btn btn-danger" %>
+            <% if @booking.errors.any? %>
+            <ul>
+              <% @booking.errors.full_messages.each do |message| %>
+              <li>
+                <%= message %>
+              </li>
+              <% end %>
+            </ul>
             <% end %>
+
+            <%= simple_form_for([@camera, @booking]) do |f| %>
+              <%= f.error_notification %>
+              <%= f.input :start_date %>
+              <%= f.input :end_date %>
+              <%= f.button :submit, class: "btn btn-danger" %>
+            <% end %>
+
           </div>
         </div>
       </div>
@@ -49,3 +64,6 @@
     </div>
   </div>
 </div>
+
+
+

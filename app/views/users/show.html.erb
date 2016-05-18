@@ -1,5 +1,6 @@
 <div class="container">
  <h1>Voici mon dashboard</h1>
+ <h2> My informations </h2>
  <ul>
    <li>First name: <%= @user.first_name %></li>
    <li>Last name: <%= @user.last_name %></li>
@@ -8,7 +9,8 @@
    <li>Address: <%= @user.address %></li>
  </ul>
 
- <ol>
+  <h2> The cameras I own </h2>
+  <ol>
    <% @user.cameras.each do |camera| %>
    <li>
      <p> Brand: <%= camera.brand %></p>
@@ -17,6 +19,55 @@
      <p> Description: <%= camera.description %></p>
    </li>
    <% end %>
- </ol>
+  </ol>
+
+  <h2> The cameras I rented as a renter </h2>
+  <ol>
+   <% @user.bookings.each do |booking| %>
+   <li>
+     <p> Camera brand: <%= booking.camera.brand %> - See the product</p>
+     <p> Start date: <%= booking.start_date %></p>
+     <p> End date: <%= booking.end_date %></p>
+     <p>
+      The owner is:
+      <%= booking.camera.user.first_name %>
+      - <%= booking.camera.user.last_name %>
+      - <%= booking.camera.user.address %>
+      - <%= booking.camera.user.phone_number %>
+      - <%= booking.camera.user.email %>
+     </p>
+   </li>
+   <% end %>
+  </ol>
+
+  <h2> The cameras I rented as an owner </h2>
+
+  <ol>
+    <% @user.cameras.each do |camera| %>
+      <% if camera.bookings.first %>
+        <li>
+          <h3> <%= camera.brand %></h3>
+          <ul>
+            <% camera.bookings.each do |booking| %>
+              <li>
+                 <p> Camera brand: <%= booking.camera.brand %> - See the product</p>
+                 <p> Start date: <%= booking.start_date %></p>
+                 <p> End date: <%= booking.end_date %>€/day</p>
+                 <p>
+                  The renter is:
+                  <%= booking.user.first_name %>
+                  - <%= booking.user.last_name %>
+                  - <%= booking.user.address %>
+                  - <%= booking.user.phone_number %>
+                  - <%= booking.user.email %>
+                 </p>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+    <% end %>
+  </ol>
+
 </div>
 
