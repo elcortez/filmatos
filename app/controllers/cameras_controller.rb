@@ -23,6 +23,8 @@ class CamerasController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @camera = Camera.new
+    @brands = Camera.brands
+    @categories = Camera.categories
   end
 
   def create
