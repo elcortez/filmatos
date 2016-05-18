@@ -35,29 +35,30 @@
   <% end %>
   <h1> We've got <%= @cameras.count %> <%= result_syntax %> </h1>
     <div class="row">
-    <% @cameras.each do |camera| %>
-    <div class="col-xs-12 col-md-3">
-      <div class="padded">
-        <% if camera.photo? %>
-          <%= cl_image_tag camera.photo.path, width: 200, height: 300, crop: :fill %>
-        <% else %>
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_url 'camera.jpg' %>);">
-        <% end %>
-          <div class="card-category"><p><%= camera.category %></p></div>
-          <div class="card-brand"><p><%= camera.brand %></p></div>
-          <div class="card-price"><p><%= camera.price %>€ per day</p></div>
-          <a class="card-link" href="<%=camera_path(camera)%>" ></a>
+      <% @cameras.each do |camera| %>
+      <div class="col-xs-12 col-md-3">
+        <div class="padded">
+          <% if camera.photo? %>
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path camera.photo.path %>)">
+              <div class="card-category"><p><%= camera.category %></p></div>
+              <div class="card-brand"><p><%= camera.brand %></p></div>
+              <div class="card-price"><p><%= camera.price %>€ per day</p></div>
+              <a class="card-link" href="<%=camera_path(camera)%>" ></a>
+          <% else %>
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_url 'camera.jpg' %>)">
+            <div class="card-category"><p><%= camera.category %></p></div>
+            <div class="card-brand"><p><%= camera.brand %></p></div>
+            <div class="card-price"><p><%= camera.price %>€ per day</p></div>
+            <a class="card-link" href="<%=camera_path(camera)%>" ></a>
+          <% end %>
+          </div>
         </div>
       </div>
+      <% end %>
+      </div>
     </div>
-    <% end %>
   </div>
 </div>
-</div>
-
-
-
-
 
 
 
