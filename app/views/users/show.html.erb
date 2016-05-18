@@ -33,13 +33,14 @@
        <div class="col-xs-12 col-md-3">
         <div class="padded">
         <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_url 'camera.jpg' %>)">
-         <div class="card-brand"><p> Brand: <%= camera.brand %></p></div>
-         <div class="card-category"><p><%= camera.category %></p></div>
-         <div class="card-price"><p> Price: <%= camera.price %>€/day</p></div>
-         </div>
+          <div class="card-brand"><p> Brand: <%= camera.brand %></p></div>
+          <div class="card-category"><p><%= camera.category %></p></div>
+          <div class="card-price"><p> Price: <%= camera.price %>€/day</p></div>
+        </div>
+        <%= link_to '<i class="fa fa-trash" aria-hidden="true"></i>'.html_safe, user_camera_path(current_user, camera), method: :delete, data: { confirm: "Are you sure to delete this camera?" }%>
+        </div>
       </div>
-    </div>
-       <% end %>
+    <% end %>
   </div>
   </div>
 
