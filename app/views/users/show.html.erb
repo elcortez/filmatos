@@ -35,6 +35,7 @@
        <p> Category: <%= camera.category %></p>
        <p> Price: <%= camera.price %>€/day</p>
        <p> Description: <%= camera.description %></p>
+       <%= link_to '<i class="fa fa-trash" aria-hidden="true"></i>'.html_safe, user_camera_path(current_user, camera), method: :delete, data: { confirm: "Are you sure to delete this camera?" }%>
      </li>
      <% end %>
     </ol>
