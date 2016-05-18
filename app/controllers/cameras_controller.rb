@@ -2,6 +2,8 @@ class CamerasController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     load_cameras
+    @categories = Camera.categories
+    @brands = Camera.brands
   end
 
   def show
@@ -9,12 +11,25 @@ class CamerasController < ApplicationController
   end
 
   def new
+    @user = User.find(params[:user_id])
     @camera = Camera.new
+  end
+
+  def create
+    @camera = Camera.new(camera_params)
+    @user = User.find(params[:user_id])
+    @camera.user = current_user
+    @camera.save
+    redirect_to cameras_path
+
   end
 
   private
 
   def load_cameras
+    params[:category] ||= []
+    params[:brand] ||= []
+
     @cameras = Camera.where(nil)
       @cameras = @cameras.search_with_description(params[:description]) if params[:description].present?
       @cameras = @cameras.search_with_brand(params[:brand]) if params[:brand].present?
@@ -26,5 +41,10 @@ class CamerasController < ApplicationController
       @cameras = @cameras.order('category ASC')
     @cameras.all
   end
+
+  def camera_params
+    params.require(:camera).permit(:brand, :category, :description, :price, :photo)
+  end
+
 
 end

@@ -4,8 +4,13 @@
     <div class="row">
       <div class="col-xs-12 col-sm-3">
         <div class="padded">
-          <div class="card-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_url 'camera.jpg' %>);">
-          </div>
+          <% if @camera.photo? %>
+            <%= cl_image_tag @camera.photo.path, width: 200, height: 300, crop: :fill %>
+          <% else %>
+            <div class="card-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_url 'camera.jpg' %>);">
+            </div>
+          <% end %>
+
         </div>
       </div>
       <div class="col-xs-12 col-sm-3 col-sm-offset-5">

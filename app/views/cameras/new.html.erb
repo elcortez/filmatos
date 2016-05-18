@@ -1,3 +1,12 @@
-<h1> Bring a new camera ! </h1>
+<h1> Add a new camera and start renting it now with Filmatos </h1>
 
+
+<%= simple_form_for([@user, @camera]) do |f| %>
+  <%= f.input :brand %>
+  <%= f.input :category %> <p>---- only in "Camera", "Accessory", "Lense", or "Tripod"</p>
+  <%= f.input :description %>
+  <%= f.input :price %>
+  <%= f.input :photo, as: :attachinary %>
+  <%= f.submit %>
+<% end %>
 

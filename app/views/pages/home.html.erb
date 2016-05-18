@@ -7,14 +7,16 @@
     <!-- Beginning of filter bar -->
       <br>
       <div class="form">
-      <%= form_tag cameras_path, :method => :get do %>
+        <%= form_tag cameras_path, :method => :get do %>
         <%= text_field_tag :description %>
         <%= submit_tag 'Search for it!', class: "btn btn-danger" %>
       <% end %>
       </div>
     <!-- End of filter bar -->
     <div class="btn-group">
-      <%= link_to "Add a new camera", new_camera_path %><br />
+      <% if user_signed_in? %>
+        <%= link_to "Add a new camera", new_user_camera_path(current_user.id) %>
+      <% end %>
     </div>
 
   </div>
