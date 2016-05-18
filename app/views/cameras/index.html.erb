@@ -1,83 +1,85 @@
 <div class="container text-center padded">
-  <!-- Beginning of filter bar -->
-    <br>
-    <%= form_tag cameras_path, :method => :get do %>
-      <label for="brand">Brand</label>
-      <% @brands.each do |brand| %>
-        <%= check_box_tag('brand[]', brand, params[:brand].include?(brand)) %>
-        <%= label_tag('brand[]', brand) %>
-      <% end %>
+ <!-- Beginning of filter bar -->
+   <div class="col-md-6">
+   <br>
+   <br>
+   <br>
+   <%= form_tag cameras_path, :method => :get do %>
+     <label for="brand">Brand</label>
+     <% @brands.each do |brand| %>
+       <%= check_box_tag('brand[]', brand, params[:brand].include?(brand)) %>
+       <%= label_tag('brand[]', brand) %>
+     <% end %>
 
-      <label for="category">Category</label>
-      <% @categories.each do |category| %>
-        <%= check_box_tag('category[]', category, params[:category].include?(category)) %>
-        <%= label_tag('category[]', category) %>
-      <% end %>
+     <label for="category">Category</label>
+     <% @categories.each do |category| %>
+       <%= check_box_tag('category[]', category, params[:category].include?(category)) %>
+       <%= label_tag('category[]', category) %>
+     <% end %>
 
-      <!-- <label for="cagegory">Category</label> -->
-     <!--  text_field_tag :query_three, params[:query_three] -->
-      <label for="price_min">Minimum price</label>
-      <%= text_field_tag :price_min, params[:price_min] %>
-      <label for="price_max">Maximum price</label>
-      <%= text_field_tag :price_max, params[:price_max] %>
-      <label for="description">Description</label>
-      <%= text_field_tag :description, params[:description] %>
-      <%= submit_tag 'Search for it!', class: "btn btn-danger" %>
-    <% end %>
+     <!-- <label for="cagegory">Category</label> -->
+    <!--  text_field_tag :query_three, params[:query_three] -->
+     <label for="price_min">Minimum price</label>
+     <%= text_field_tag :price_min, params[:price_min] %>
+     <label for="price_max">Maximum price</label>
+     <%= text_field_tag :price_max, params[:price_max] %>
+     <label for="description">Description</label>
+     <%= text_field_tag :description, params[:description] %>
+     <%= submit_tag 'Search for it!', class: "btn btn-danger" %>
+   <% end %>
+   </div>
 </div>
-  <!-- End of filter bar -->
+ <!-- End of filter bar -->
 <div class="wrapper">
-  <div class="container text-center">
-  <% if @cameras.count <= 1 %>
-    <% result_syntax = 'result' %>
-  <% else %>
-    <% result_syntax = 'results' %>
-  <% end %>
-  <h1> We've got <%= @cameras.count %> <%= result_syntax %> </h1>
-    <div class="row">
-      <% @cameras.each do |camera| %>
-      <div class="col-xs-12 col-md-3">
-        <div class="padded">
-          <% if camera.photo? %>
-            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path camera.photo.path %>)">
-              <div class="card-category"><p><%= camera.category %></p></div>
-              <div class="card-brand"><p><%= camera.brand %></p></div>
-              <div class="card-price"><p><%= camera.price %>€ per day</p></div>
-              <a class="card-link" href="<%=camera_path(camera)%>" ></a>
-          <% else %>
-            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_url 'camera.jpg' %>)">
-            <div class="card-category"><p><%= camera.category %></p></div>
-            <div class="card-brand"><p><%= camera.brand %></p></div>
-            <div class="card-price"><p><%= camera.price %>€ per day</p></div>
-            <a class="card-link" href="<%=camera_path(camera)%>" ></a>
-          <% end %>
-          </div>
-        </div>
-      </div>
-      <% end %>
-      </div>
-    </div>
-  </div>
-</div>
+ <div class="container text-center">
+ <div class="col-md-6">
+ <% if @cameras.count <= 1 %>
+   <% result_syntax = 'result' %>
+ <% else %>
+   <% result_syntax = 'results' %>
+ <% end %>
+ <h1> We've got <%= @cameras.count %> <%= result_syntax %> </h1>
+   <div class="row">
+     <div class="col-xs-12 col-md-6 col-md-offset-5 map">
+       <div id="map" style="width: 100%; height: 600px;"></div>
+     </div>
 
-<div id="map" style="width: 100%; height: 600px;"></div>
+     <% @cameras.each do |camera| %>
+     <div class="col-xs-12 col-md-6">
+       <div class="padded">
+         <% if camera.photo? %>
+           <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path camera.photo.path %>)">
+             <div class="card-category"><p><%= camera.category %></p></div>
+             <div class="card-brand"><p><%= camera.brand %></p></div>
+             <div class="card-price"><p><%= camera.price %>€ per day</p></div>
+             <a class="card-link" href="<%=camera_path(camera)%>" ></a>
+         <% else %>
+           <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_url 'camera.jpg' %>)">
+           <div class="card-category"><p><%= camera.category %></p></div>
+           <div class="card-brand"><p><%= camera.brand %></p></div>
+           <div class="card-price"><p><%= camera.price %>€ per day</p></div>
+           <a class="card-link" href="<%=camera_path(camera)%>" ></a>
+         <% end %>
+         </div>
+
+       </div>
+     </div>
+     <% end %>
+     </div>
+     </div>
+   </div>
+ </div>
+</div>
 
 <% content_for(:after_js) do %>
-  <%= javascript_tag do %>
-    $(document).on('ready', function() {
-      handler = Gmaps.build('Google');
-      handler.buildMap({ internal: { id: 'map' } }, function(){
-        markers = handler.addMarkers(<%= raw @markers.to_json %>);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-      });
-    })
-  <% end %>
+ <%= javascript_tag do %>
+   $(document).on('ready', function() {
+     handler = Gmaps.build('Google');
+     handler.buildMap({ internal: { id: 'map' } }, function(){
+       markers = handler.addMarkers(<%= raw @markers.to_json %>);
+       handler.bounds.extendWith(markers);
+       handler.fitMapToBounds();
+     });
+   })
+ <% end %>
 <% end %>
-
-
-
-
-
-
-
