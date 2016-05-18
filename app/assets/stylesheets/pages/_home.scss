@@ -2,3 +2,17 @@
  * CSS code specific to home page
  * (margin/padding adjustments)
  * ------------------------------------- */
+
+.img-home img {
+  height: 200px;
+  width: 200px;
+  margin: 20px 0;
+}
+
+.content h4{
+  padding-top: 50px;
+}
+
+.hidden {
+  opacity: 1;
+}
