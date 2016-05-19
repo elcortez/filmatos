@@ -61,8 +61,8 @@
             <%= simple_form_for([@camera, @booking]) do |f| %>
             <div class="form-padded">
               <%= f.error_notification %>
-              <%= f.input :start_date %>
-              <%= f.input :end_date %>
+              <%= f.input :start_date, placeholder: 'From...', input_html: {class: 'form-control input-lg datepicker'}%> <br>
+              <%= f.input :end_date, placeholder: 'To...', input_html: {class: 'form-control input-lg datepicker'} %> <br>
               <%= f.button :submit, class: "btn btn-danger form-control" %>
             <% end %>
             </div>

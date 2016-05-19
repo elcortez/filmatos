@@ -8,4 +8,5 @@ class Booking < ActiveRecord::Base
   # validates :camera, uniqueness: { scope: :start_date }
   # validate unicity of camera if start_date is
   # between start and end date of another instance
+  #
 end
