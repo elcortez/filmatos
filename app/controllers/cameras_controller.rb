@@ -5,10 +5,17 @@ class CamerasController < ApplicationController
   def index
     load_cameras
     @users = User.near(params[:location], 5)
+    # Definition of near cameras
     @near_cameras = []
     @cameras.each do |camera|
       @near_cameras << camera if @users.include?(camera.user)
     end
+    # Definition of available cameras
+    @near_cameras_available = []
+    @near_cameras.each do |camera|
+      @near_cameras_available << camera if camera.available?(params[:start_date], params[:end_date])
+    end
+    # Categories and brands useful for the filter
     @categories = Camera.categories
     @brands = Camera.brands
 

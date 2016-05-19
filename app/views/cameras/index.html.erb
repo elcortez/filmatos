@@ -83,7 +83,9 @@
        <div id="map" style="height: 100vh;"></div>
      </div>
 
-      <% @near_cameras.each do |camera| %>
+
+
+      <% @near_cameras_available.each do |camera| %>
       <div class="col-xs-12 col-md-6">
         <div class="padded">
           <% if camera.photo? %>
@@ -107,7 +109,6 @@
             <a class="card-link" href="<%=camera_path(camera)%>", target="_blank" ></a>
           <% end %>
           </div>
-
        </div>
      </div>
      <% end %>
