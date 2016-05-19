@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <div class="container text-center">
+  <div class="container">
   <h1> Check this item </h1>
     <div class="row">
       <div class="col-xs-12 col-sm-3">
@@ -12,32 +12,38 @@
           <% end %>
         </div>
         <div class="card-stats">
-
-            <div class="stats-reviews list-inline">
-              <ul>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-              </ul>
-            </div>
-            <div class="stats-name">
-              <h3><%= @camera.brand %></h3>
-            </div>
-            <div class="stats-share list-inline">
-              <ul>
+          <div class="stats-reviews list-inline">
+            <ul>
+              <i class="fa fa-star icon-full" aria-hidden="true"></i>
+              <i class="fa fa-star icon-full" aria-hidden="true"></i>
+              <i class="fa fa-star icon-full" aria-hidden="true"></i>
+              <i class="fa fa-star-half-o icon-half" aria-hidden="true"></i>
+              <i class="fa fa-star-o icon-empty" aria-hidden="true"></i>
+            </ul>
+          </div>
+          <div class="stats-name">
+            <h3><%= @camera.brand %></h3>
+          </div>
+          <div class="stats-share list-inline">
+            <ul class="list-inline">
+              <li>
                 <i class="fa fa-retweet" aria-hidden="true"></i>
+              </li>
+              <li>
                 <i class="fa fa-envelope" aria-hidden="true"></i>
+              </li>
+              <li>
                 <i class="fa fa-facebook" aria-hidden="true"></i>
+              </li>
+              <li>
                 <i class="fa fa-share" aria-hidden="true"></i>
-              </ul>
-            </div>
-
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="col-xs-12 col-sm-3 col-sm-offset-5">
-        <div class="padded">
+        <div class="padded text-center">
           <div class="card-form">
             <h2>Book this item</h2>
             <h3><%= @camera.price %>€</h3>
@@ -67,7 +73,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12 col-md-3">
-        <div class="padded">
+        <div class="padded text-center">
           <div class="card-white">
             <p>Category: <%= @camera.category %></p>
             <p>Description: <%= @camera.description %></p>
@@ -77,7 +83,7 @@
     </div>
     <div class="row">
       <div class="col-xs-12 col-md-3">
-        <div class="padded">
+        <div class="padded text-center">
           <div class="card-white">
             <p>Owner's email: <%= @camera.user.email %></p>
           </div>
