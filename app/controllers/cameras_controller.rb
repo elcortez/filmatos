@@ -17,8 +17,6 @@ class CamerasController < ApplicationController
       marker.lat camera.user.latitude
       marker.lng camera.user.longitude
     end
-
-
   end
 
   def show

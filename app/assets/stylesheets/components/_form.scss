@@ -1,0 +1,15 @@
+.form-flex {
+  display: flex;
+  justify-content: space-between;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.flex-item-3 {
+  flex: 0 0 30%;
+  padding: 10px;
+}
+.brand-category {
+  display: flex;
+  justify-content: space-between;
+}

@@ -27,6 +27,8 @@
    <p>Phone number: <%= @user.phone_number %></p>
    <p>Email: <%= @user.email %></p>
    <p>Address: <%= @user.address %></p>
+   <br>
+   <p>Average booking acceptance: <%= @user.stats %></p>
 
  </div>
 
@@ -57,6 +59,17 @@
      <p> Start date: <%= booking.start_date %></p>
      <p> End date: <%= booking.end_date %></p>
      <p>
+        Status:
+        <% if booking.status == 'pending' %>
+          <%= booking.status %> -
+          <%= link_to "Accept", camera_booking_accepted_path(booking) %>
+          |
+          <%= link_to "Decline", camera_booking_declined_path(booking)  %>
+        <% else %>
+          <%= booking.status %>
+        <% end %>
+     </p>
+     <p>
       The owner is:
       <%= booking.camera.user.first_name %>
       - <%= booking.camera.user.last_name %>
@@ -82,6 +95,7 @@
                  <p> Camera brand: <%= booking.camera.brand %> - See the product</p>
                  <p> Start date: <%= booking.start_date %></p>
                  <p> End date: <%= booking.end_date %>€/day</p>
+                 <p> Status: <%= booking.status %> </p>
                  <p>
                   The renter is:
                   <%= booking.user.first_name %>
