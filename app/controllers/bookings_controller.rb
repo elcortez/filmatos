@@ -6,12 +6,27 @@ class BookingsController < ApplicationController
     @booking.camera = @camera
     @user = current_user
     @booking.user = @user
+    @booking.status = 'pending'
 
     if @booking.save
       redirect_to user_path(@user)
     else
       render 'cameras/show'
     end
+  end
+
+  def mark_as_accepted
+    @booking = Booking.find(params[:id])
+    @booking.status = 'accepted'
+    @booking.save
+    redirect_to user_path(current_user)
+  end
+
+  def mark_as_declined
+    @booking = Booking.find(params[:id])
+    @booking.status = 'declined'
+    @booking.save
+    redirect_to user_path(current_user)
   end
 
   private
