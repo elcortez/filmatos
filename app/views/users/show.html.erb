@@ -5,13 +5,13 @@
     <h3>My profile</h3>
   </a>
   <a class="tab" data-target="#my-camera-offer">
-    <h3>My Product Offer</h3>
+    <h3>My Equipment</h3>
   </a>
   <a class="tab" data-target="#my-bookings">
-    <h3>My Product Booked</h3>
+    <h3>They booked my products</h3>
   </a>
   <a class="tab" data-target="#my-rentals">
-    <h3>My Rentals</h3>
+    <h3>I booked their products</h3>
   </a>
 </div>
 </div>
@@ -33,7 +33,7 @@
  </div>
 
   <div class="tab-content" id="my-camera-offer">
-    <h2> My Product Offer </h2>
+    <h2> My Equipment </h2>
      <div class="row">
      <% @user.cameras.each do |camera| %>
        <div class="col-xs-12 col-md-3">
@@ -51,39 +51,7 @@
   </div>
 
   <div class="tab-content" id="my-bookings">
-  <h2> My Product Booked </h2>
-  <ol>
-   <% @user.bookings.each do |booking| %>
-   <li>
-     <p> Camera brand: <%= booking.camera.brand %> - See the product</p>
-     <p> Start date: <%= booking.start_date %></p>
-     <p> End date: <%= booking.end_date %></p>
-     <p>
-        Status:
-        <% if booking.status == 'pending' %>
-          <%= booking.status %> -
-          <%= link_to "Accept", camera_booking_accepted_path(booking) %>
-          |
-          <%= link_to "Decline", camera_booking_declined_path(booking)  %>
-        <% else %>
-          <%= booking.status %>
-        <% end %>
-     </p>
-     <p>
-      The owner is:
-      <%= booking.camera.user.first_name %>
-      - <%= booking.camera.user.last_name %>
-      - <%= booking.camera.user.address %>
-      - <%= booking.camera.user.phone_number %>
-      - <%= booking.camera.user.email %>
-     </p>
-   </li>
-   <% end %>
-  </ol>
-  </div>
-
-  <div class="tab-content" id="my-rentals">
-  <h2> My Rentals </h2>
+  <h2> They booked my products </h2>
   <ol>
     <% @user.cameras.each do |camera| %>
       <% if camera.bookings.first %>
@@ -94,8 +62,18 @@
               <li>
                  <p> Camera brand: <%= booking.camera.brand %> - See the product</p>
                  <p> Start date: <%= booking.start_date %></p>
-                 <p> End date: <%= booking.end_date %>€/day</p>
-                 <p> Status: <%= booking.status %> </p>
+                 <p> End date: <%= booking.end_date %></p>
+                 <p>
+                    Status:
+                    <% if booking.status == 'pending' %>
+                      <%= booking.status %> -
+                      <%= link_to "Accept", camera_booking_accepted_path(booking) %>
+                      |
+                      <%= link_to "Decline", camera_booking_declined_path(booking)  %>
+                    <% else %>
+                      <%= booking.status %>
+                    <% end %>
+                 </p>
                  <p>
                   The renter is:
                   <%= booking.user.first_name %>
@@ -110,6 +88,28 @@
         </li>
       <% end %>
     <% end %>
+  </ol>
+  </div>
+
+  <div class="tab-content" id="my-rentals">
+  <h2> I booked their products </h2>
+  <ol>
+   <% @user.bookings.each do |booking| %>
+   <li>
+     <p> Camera brand: <%= booking.camera.brand %> - See the product</p>
+     <p> Start date: <%= booking.start_date %></p>
+     <p> End date: <%= booking.end_date %></p>
+     <p> Status: <%= booking.status %> </p>
+     <p>
+      The owner is:
+      <%= booking.camera.user.first_name %>
+      - <%= booking.camera.user.last_name %>
+      - <%= booking.camera.user.address %>
+      - <%= booking.camera.user.phone_number %>
+      - <%= booking.camera.user.email %>
+     </p>
+   </li>
+   <% end %>
   </ol>
   </div>
 
