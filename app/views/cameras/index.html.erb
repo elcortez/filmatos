@@ -93,6 +93,13 @@
               <div class="card-category"><p><%= camera.category %></p></div>
               <div class="card-brand"><p><%= camera.brand %></p></div>
               <div class="card-price"><p><%= camera.price %>€ per day</p></div>
+              <div class="card-avatar">
+                <% if camera.user.photo? %>
+                  <%= cl_image_tag camera.user.photo.path, class: "card-avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+                <% else %>
+                  <img src="http://www.placehold.it/50/50" alt="">
+                <% end %>
+              </div>
               <a class="card-link" href="<%=camera_path(camera)%>", target="_blank" ></a>
           <% else %>
             <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_url 'camera.jpg' %>)">
