@@ -9,8 +9,8 @@
       <div class="form">
         <%= form_tag(cameras_path, method: :get, class:'form-inline') do %>
         <%= text_field_tag :location, nil, placeholder: 'Paris...', class: 'form-control input-lg' %>
-        <%= text_field_tag :date, nil, placeholder: 'From...', class: 'form-control input-lg datepicker' %>
-        <%= text_field_tag :date, nil, placeholder: 'To...', class: 'form-control input-lg datepicker' %>
+        <%= text_field_tag :start_date, nil, placeholder: 'From...', class: 'form-control input-lg datepicker' %>
+        <%= text_field_tag :end_date, nil, placeholder: 'To...', class: 'form-control input-lg datepicker' %>
         <%= submit_tag 'Search for it!', class: "btn btn-medium" %>
       <% end %>
       </div>
