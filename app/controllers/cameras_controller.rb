@@ -4,15 +4,21 @@ class CamerasController < ApplicationController
 
   def index
     load_cameras
+    @users = User.near(params[:location], 5)
+    @near_cameras = []
+    @cameras.each do |camera|
+      @near_cameras << camera if @users.include?(camera.user)
+    end
     @categories = Camera.categories
     @brands = Camera.brands
 
-
     # Let's DYNAMICALLY build the markers for the view.
-    @markers = Gmaps4rails.build_markers(@cameras) do |camera, marker|
+    @markers = Gmaps4rails.build_markers(@near_cameras) do |camera, marker|
       marker.lat camera.user.latitude
       marker.lng camera.user.longitude
     end
+
+
   end
 
   def show
