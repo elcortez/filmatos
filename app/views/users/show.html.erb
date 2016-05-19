@@ -38,7 +38,11 @@
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <div class="profile-content padded">
-          <p>Average booking acceptance: <%= @user.stats %></p>
+          <p>My stats (average acceptance):</p>
+          <ul>
+            <li>As an owner : <%= @user.stats_as_owner %> </li>
+            <li>As a renter : <%= @user.stats_as_renter %> </li>
+          </ul>
         </div>
       </div>
     </div>
