@@ -1,7 +1,7 @@
 <div class="<%=  params[:action] == "home" ? 'navbar-wagon navbar-wagon-fixed transparent' : 'navbar-wagon navbar-wagon-fixed' %>">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "video-camera-red.png" %>
+    <%= image_tag "filmatos.png" %>
   <% end %>
 
   <!-- Right Navigation -->
@@ -20,8 +20,8 @@
       <!-- Notification -->
       <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
         <div class="badge-container">
-          <i class="fa fa-envelope-o"></i>
-          <div class="badge badge-blue">3</div>
+          <i class="fa fa-video-camera" aria-hidden="true"></i>
+          <div class="badge badge-red">3</div>
         </div>
       <% end %>
 
