@@ -13,10 +13,24 @@
   padding-top: 50px;
 }
 
-.hidden {
-  opacity: 1;
-}
-
 .home-content {
   padding: 90px 0;
+}
+
+.btn-medium {
+  background: #9B7D5F;
+  border: 3px solid black;
+  padding: 10px 15px;
+  border-radius: 50px;
+  font-weight: bold;
+  opacity: 0.8;
+}
+.btn-medium:hover {
+  opacity: 1;
+  text-decoration: none;
+  color: white;
+}
+
+.banner-content h1{
+font-size: 60px;
 }
