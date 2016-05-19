@@ -4,14 +4,14 @@
   <a class="tab active" data-target="#profile">
     <h3>My profile</h3>
   </a>
-  <a class="tab" data-target="#my-camera-offer">
-    <h3>My Equipment</h3>
-  </a>
   <a class="tab" data-target="#my-bookings">
-    <h3>They booked my products</h3>
+    <h3>They booked <span style="color:#EE5F5B">my</span> products</h3>
   </a>
   <a class="tab" data-target="#my-rentals">
-    <h3>I booked their products</h3>
+    <h3>I booked <span style="color:#EE5F5B">their</span> products</h3>
+  </a>
+  <a class="tab" data-target="#my-camera-offer">
+    <h3>My Equipment</h3>
   </a>
 </div>
 </div>
@@ -19,35 +19,41 @@
 
 <div class="container text-center">
 
- <div class="tab-content unstyled-list" id="profile">
- <h2> My informations </h2>
-
-   <p>First name: <%= @user.first_name %></p>
-   <p>Last name: <%= @user.last_name %></p>
-   <p>Phone number: <%= @user.phone_number %></p>
-   <p>Email: <%= @user.email %></p>
-   <p>Address: <%= @user.address %></p>
-   <br>
-   <p>Average booking acceptance: <%= @user.stats %></p>
-
- </div>
-
-  <div class="tab-content" id="my-camera-offer">
-    <h2> My Equipment </h2>
-     <div class="row">
-     <% @user.cameras.each do |camera| %>
-       <div class="col-xs-12 col-md-3">
-        <div class="padded">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_url 'camera.jpg' %>)">
-          <div class="card-brand"><p> Brand: <%= camera.brand %></p></div>
-          <div class="card-category"><p><%= camera.category %></p></div>
-          <div class="card-price"><p> Price: <%= camera.price %>€/day</p></div>
-        </div>
-        <%= link_to '<i class="fa fa-trash" aria-hidden="true"></i>'.html_safe, user_camera_path(current_user, camera), method: :delete, data: { confirm: "Are you sure to delete this camera?" }%>
+  <div class="tab-content unstyled-list" id="profile">
+    <h2> My details </h2>
+    <div class="row">
+      <div class="col-md-7">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2))"></div>
+      </div>
+      <div class="col-md-5">
+      <ul class="list-unstyled text-left">
+        <li><p><%= @user.first_name %></p></li>
+        <li><p><%= @user.last_name %></p></li>
+        <li><p><i class="fa fa-phone" aria-hidden="true"></i> <%= @user.phone_number %></li>
+        <li><p><i class="fa fa-home" aria-hidden="true"></i> <%= @user.address %></p></li>
+        <li><p><i class="fa fa-envelope-o" aria-hidden="true"></i> <%= @user.email %></p></li>
+      </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="profile-content padded">
+          <p>Average booking acceptance: <%= @user.stats %></p>
         </div>
       </div>
-    <% end %>
+    </div>
   </div>
+</div>
+
+
+
+<% if current_user.photo? %>
+          <%= cl_image_tag current_user.photo.path, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+        <% else %>
+          <%= cl_image_tag "#", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+        <% end %>
+
+
   </div>
 
   <div class="tab-content" id="my-bookings">
@@ -111,6 +117,24 @@
    </li>
    <% end %>
   </ol>
+  </div>
+
+  <div class="tab-content" id="my-camera-offer">
+    <h2> My Equipment </h2>
+     <div class="row">
+     <% @user.cameras.each do |camera| %>
+       <div class="col-xs-12 col-md-3">
+        <div class="padded">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_url 'camera.jpg' %>)">
+          <div class="card-brand"><p> Brand: <%= camera.brand %></p></div>
+          <div class="card-category"><p><%= camera.category %></p></div>
+          <div class="card-price"><p> Price: <%= camera.price %>€/day</p></div>
+        </div>
+        <%= link_to '<i class="fa fa-trash" aria-hidden="true"></i>'.html_safe, user_camera_path(current_user, camera), method: :delete, data: { confirm: "Are you sure to delete this camera?" }%>
+        </div>
+      </div>
+    <% end %>
+  </div>
   </div>
 
 </div>

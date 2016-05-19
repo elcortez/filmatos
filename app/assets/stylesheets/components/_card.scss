@@ -137,3 +137,31 @@
 .panel {
   border:  transparent;
 }
+
+
+//card dashboard profile
+.card-first-name{
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+.card-last-name{
+  position: absolute;
+  left: 10px;
+  top: 30px;
+}
+.card-address{
+  position: absolute;
+  left: 10px;
+  bottom: 20px;
+}
+.card-number{
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+}
+.card-email{
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
