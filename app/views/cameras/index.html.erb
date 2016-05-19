@@ -72,12 +72,12 @@
 <div class="wrapper">
  <div class="container text-center">
  <div class="col-md-6">
- <% if @near_cameras.count <= 1 %>
+ <% if @near_cameras_available.count <= 1 %>
    <% result_syntax = 'result' %>
  <% else %>
    <% result_syntax = 'results' %>
  <% end %>
- <h1> We've got <%= @near_cameras.count %> <%= result_syntax %> </h1>
+ <h1> We've got <%= @near_cameras_available.count %> <%= result_syntax %> </h1>
    <div class="row">
      <div class="col-md-6 col-md-offset-5 map">
        <div id="map" style="height: 100vh;"></div>
