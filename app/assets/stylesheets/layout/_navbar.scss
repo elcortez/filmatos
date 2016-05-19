@@ -17,7 +17,11 @@
   top: 0px;
   z-index: 1;
   width: 100%;
+}
+
+.transparent {
   background: transparent;
+  box-shadow: none;
 }
 
 /* Navbar logo */
@@ -130,3 +134,5 @@
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
 }
+
+

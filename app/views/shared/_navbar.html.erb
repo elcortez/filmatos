@@ -1,7 +1,7 @@
-<div class="navbar-wagon navbar-wagon-fixed">
+<div class="<%=  params[:action] == "home" ? 'navbar-wagon navbar-wagon-fixed transparent' : 'navbar-wagon navbar-wagon-fixed' %>">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "video-camera-blue.png" %>
+    <%= image_tag "video-camera-red.png" %>
   <% end %>
 
   <!-- Right Navigation -->
