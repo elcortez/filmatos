@@ -1,13 +1,13 @@
 
 //card index
 .card {
-  height: 175px;
+  height: 190px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
   background-size: cover !important;
   color: white;
   position: relative;
   padding-bottom: 10px;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 .card-user {
@@ -17,10 +17,15 @@
 }
 .card-price {
   position: absolute;
-  right: 10px;
+  right: -10px;
   bottom: 10px;
+  background: #DE2E32;
+  padding: 4px 10px 0 10px;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(10,10,10,0.2);
 }
 .card-category {
+  color: #DE2E32;
   position: absolute;
   bottom: 10px;
   left: 10px;
@@ -76,6 +81,7 @@
   position: relative;
   border-radius: 2px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+
 }
 
 .card-form {
