@@ -19,6 +19,17 @@
   padding-left: 25px;
 }
 
+.flashes-home {
+  top: 70px;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+}
+
+.alert {
+  border: 0px solid transparent;
+}
+
 // Backgrounds
 .bg-black {
   background: #4a4a4a;
@@ -54,7 +65,6 @@
 .brand-category {
   color: grey;
 }
-
 
 // fa
 .fa {
