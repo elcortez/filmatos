@@ -117,7 +117,12 @@
 
     <div class="row">
       <div class="col-md-6">
-        <div class="card card-booked-product" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path booking.camera.photo.path %>)">
+        <div class="card card-booked-product" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<% if booking.camera.photo %>
+                <%= cl_image_path booking.camera.photo.path %>
+                <% else %>
+                <%= 'http://lorempixel.com/50/50/technics' %>
+                <% end %>
+                )">
         <div class="card-brand"><p><%= booking.camera.brand %></p></div>
         </div>
       </div>
