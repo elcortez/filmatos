@@ -147,7 +147,7 @@
        <div class="col-xs-12 col-md-3">
         <div class="padded">
         <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_url 'camera.jpg' %>)">
-          <div class="card-brand"><p> Brand: <%= camera.brand %></p></div>
+          <div class="card-brand"><p><a class="card" href="<%=camera_path(camera)%>", target="_blank">  Brand: <%= camera.brand %></a></p></div>
           <div class="card-category"><p><%= camera.category %></p></div>
           <div class="card-price"><p> Price: <%= camera.price %>€/day</p></div>
         </div>
