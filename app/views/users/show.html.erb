@@ -52,7 +52,7 @@
 
         <div class="card-website">
           <ul class="list-unstyled text-left">
-            <li><p><i class="fa fa-feed" aria-hidden="true"></i> Website: www.filmatos.com</p> </li>
+            <li><p><i class="fa fa-money" aria-hidden="true"></i> Money earned so far: <strong><%= @user.sales %>€</strong></p> </li>
           </ul>
         </div>
         </div>
@@ -114,13 +114,13 @@
     <div class="row">
       <div class="col-md-6">
         <div class="card card-booked-product" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-          <% if booking.camera.photo? %>
+          <% if booking.camera && booking.camera.photo? %>
             url(<%= cl_image_path camera.photo.path, height: 300, width: 400, crop: :fill %>)
           <% else %>
             url(<%= asset_url 'camera.jpg' %>)
           <% end %>
         ">
-        <div class="card-brand"><p><%= booking.camera.brand %></p></div>
+        <div class="card-brand"><p><%= booking.camera ? booking.camera.brand : 'Item deleted' %></p></div>
         </div>
       </div>
       <div class="col-md-6">
@@ -128,10 +128,16 @@
           <p><strong>Status</strong>: <%= booking.status.capitalize %> </p>
          <p><strong>Start date:</strong> <%= booking.start_date %> | <strong>End date:</strong> <%= booking.end_date %></p>
           <p><strong>Owner</strong> </p>
-          <p><%= booking.camera.user.first_name.capitalize %> <%= booking.camera.user.last_name.capitalize %></p>
-          <p><%= booking.camera.user.address %></p>
-          <p><%= booking.camera.user.phone_number %></p>
-          <p><%= booking.camera.user.email %></p>
+          <% if booking.camera %>
+            <p><%= booking.camera.user.first_name.capitalize %>
+              <%= booking.camera.user.last_name.capitalize %>
+            </p>
+            <p><%= booking.camera.user.address  %></p>
+            <p><%= booking.camera.user.phone_number %></p>
+            <p><%= booking.camera.user.email %></p>
+          <% else %>
+            <p style="color: red;"><em><strong>Item deleted</strong></em></p>
+          <% end %>
           </p>
         </div>
       </div>
