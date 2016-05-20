@@ -9,7 +9,7 @@ class BookingsController < ApplicationController
     @booking.status = 'pending'
 
     if @booking.save
-      redirect_to user_path(@user)
+      redirect_to user_path(@user, :anchor => "my-rentals")
     else
       render 'cameras/show'
     end
