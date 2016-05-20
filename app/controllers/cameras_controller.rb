@@ -4,7 +4,7 @@ class CamerasController < ApplicationController
 
   def index
     load_cameras
-    @users = User.near(params[:location], 5)
+    params[:location].blank? ? @users = User.all : @users = User.near(params[:location], 5)
     # Definition of near cameras
     @near_cameras = []
     @cameras.each do |camera|
