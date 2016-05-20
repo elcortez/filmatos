@@ -97,7 +97,9 @@
                 <% if camera.user.photo? %>
                   <%= cl_image_tag camera.user.photo.path, class: "card-avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
                 <% else %>
-                  <img src="http://www.placehold.it/50/50" alt="">
+                  <div class="card-avatar">
+                    <img src="http://lorempixel.com/50/50/people" alt="">
+                  </div>
                 <% end %>
               </div>
               <a class="card-link" href="<%=camera_path(camera)%>", target="_blank" ></a>

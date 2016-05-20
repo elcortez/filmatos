@@ -106,10 +106,11 @@
             <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
           </div>
           <div class="form-actions">
-            <%= f.button :submit, class: "btn btn-primary form-control" %>
+            <%= f.button :submit, "Log in", class: "btn btn-primary form-control" %>
           </div>
         <% end %>
-        <%= render "devise/shared/links" %>
+        <br>
+        <%= render "devise/shared/login_links" %>
         </div>
       </div>
       <div class="modal-footer">
