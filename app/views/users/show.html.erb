@@ -154,7 +154,7 @@
           <div class="card-category"><p><%= camera.category %></p></div>
           <div class="card-price"><p> Price: <%= camera.price %>€/day</p></div>
         </div>
-        <%= link_to '<i class="fa fa-trash" aria-hidden="true"></i>'.html_safe, user_camera_path(current_user, camera), method: :delete, data: { confirm: "Are you sure to delete this camera?" }%>
+        <%= link_to '<i class="fa fa-trash" aria-hidden="true"></i>'.html_safe, user_camera_path(current_user, camera), :anchor => "my-camera-offer", method: :delete, data: { confirm: "Are you sure to delete this camera?" }%>
         </div>
       </div>
       <% end %>
