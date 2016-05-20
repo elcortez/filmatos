@@ -81,9 +81,9 @@
               <strong>Status</strong>:
               <% if booking.status == 'pending' %>
                 <%= booking.status.capitalize %><br>
-                <button type="button" class="btn btn-success"><%= link_to "Accept", camera_booking_accepted_path(booking) %></button>
+                <button type="button" class="btn btn-success"><%= link_to "Accept", camera_booking_accepted_path(booking), {class: "accept-button"} %></button>
 
-                <button type="button" class="btn btn-danger"><%= link_to "Decline", camera_booking_declined_path(booking)  %></button>
+                <button type="button" class="btn btn-danger"><%= link_to "Decline", camera_booking_declined_path(booking), {class: "accept-button"} %></button>
               <% else %>
                 <%= booking.status.capitalize %>
               <% end %>
