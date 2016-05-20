@@ -16,6 +16,8 @@
   </div>
 </div>
 
+
+
 <div class="container text-center">
   <div class="tab-content unstyled-list" id="profile">
     <h2> My details </h2>
@@ -57,96 +59,97 @@
 
 
 
+<div class="container text-center">
+  <div class="hidden tab-content" id="my-bookings">
+  <h2> They booked my products </h2><br><br>
+  <% @user.cameras.each do |camera| %>
+    <% if camera.bookings.first %>
+      <% camera.bookings.each do |booking| %>
 
-
-
-
-  <div class="container">
-    <div class="tab-content" id="my-bookings">
-    <h2> They booked my products </h2>
-    <ol>
-      <% @user.cameras.each do |camera| %>
-        <% if camera.bookings.first %>
-          <li>
-            <h3> <%= camera.brand %></h3>
-            <ul>
-              <% camera.bookings.each do |booking| %>
-                <li>
-                   <p> Camera brand: <%= booking.camera.brand %> - See the product</p>
-                   <p> Start date: <%= booking.start_date %></p>
-                   <p> End date: <%= booking.end_date %></p>
-                   <p>
-                      Status:
-                      <% if booking.status == 'pending' %>
-                        <%= booking.status %> -
-                        <%= link_to "Accept", camera_booking_accepted_path(booking) %>
-                        |
-                        <%= link_to "Decline", camera_booking_declined_path(booking)  %>
-                      <% else %>
-                        <%= booking.status %>
-                      <% end %>
-                   </p>
-                   <p>
-                    The renter is:
-                    <%= booking.user.first_name %>
-                    - <%= booking.user.last_name %>
-                    - <%= booking.user.address %>
-                    - <%= booking.user.phone_number %>
-                    - <%= booking.user.email %>
-                   </p>
-                </li>
-              <% end %>
-            </ul>
-          </li>
-        <% end %>
-      <% end %>
-    </ol>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="tab-content" id="my-rentals">
-    <h2> I booked their products </h2>
-    <ol>
-     <% @user.bookings.each do |booking| %>
-     <li>
-       <p> Camera brand: <%= booking.camera.brand %> - See the product</p>
-       <p> Start date: <%= booking.start_date %></p>
-       <p> End date: <%= booking.end_date %></p>
-       <p> Status: <%= booking.status %> </p>
-       <p>
-        The owner is:
-        <%= booking.camera.user.first_name %>
-        - <%= booking.camera.user.last_name %>
-        - <%= booking.camera.user.address %>
-        - <%= booking.camera.user.phone_number %>
-        - <%= booking.camera.user.email %>
-       </p>
-     </li>
-     <% end %>
-    </ol>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="tab-content" id="my-camera-offer">
-      <h2> My Equipment </h2>
       <div class="row">
-        <% @user.cameras.each do |camera| %>
-         <div class="col-xs-12 col-md-3">
-          <div class="padded">
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_url 'camera.jpg' %>)">
-            <div class="card-brand"><p> Brand: <%= camera.brand %></p></div>
-            <div class="card-category"><p><%= camera.category %></p></div>
-            <div class="card-price"><p> Price: <%= camera.price %>€/day</p></div>
-          </div>
-          <%= link_to '<i class="fa fa-trash" aria-hidden="true"></i>'.html_safe, user_camera_path(current_user, camera), method: :delete, data: { confirm: "Are you sure to delete this camera?" }%>
+        <div class="col-md-6">
+          <div class="card card-booked-product" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path booking.camera.photo.path %>)">
+          <div class="card-brand"><p><%= booking.camera.brand %></p></div>
           </div>
         </div>
-        <% end %>
+
+        <div class="col-md-6">
+          <p>
+            <strong>Status</strong>:
+            <% if booking.status == 'pending' %>
+              <%= booking.status.capitalize %><br>
+              <button type="button" class="btn btn-success"><%= link_to "Accept", camera_booking_accepted_path(booking) %></button>
+
+              <button type="button" class="btn btn-danger"><%= link_to "Decline", camera_booking_declined_path(booking)  %></button>
+            <% else %>
+              <%= booking.status.capitalize %>
+            <% end %>
+           </p>
+          <p> <strong>Start date:</strong> <%= booking.start_date %> | <strong>End date:</strong> <%= booking.end_date %> </p>
+          <p><strong>Renter</strong></p>
+          <p><%= booking.user.first_name.capitalize %> <%= booking.user.last_name.capitalize %></p>
+          <p><%= booking.user.address %></p>
+          <p><%= booking.user.phone_number %></p>
+          <p><%= booking.user.email %></p>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+  <% end %>
+  </div>
+</div>
+
+
+
+
+<div class="container text-center">
+  <div class="hidden tab-content" id="my-rentals">
+  <h2> I booked their products </h2><br><br>
+   <% @user.bookings.each do |booking| %>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card card-booked-product" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path booking.camera.photo.path %>)">
+        <div class="card-brand"><p><%= booking.camera.brand %></p></div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <p><strong>Status</strong>: <%= booking.status.capitalize %> </p>
+       <p><strong>Start date:</strong> <%= booking.start_date %> | <strong>End date:</strong> <%= booking.end_date %></p>
+        <p><strong>Owner</strong> </p>
+        <p><%= booking.camera.user.first_name.capitalize %> <%= booking.camera.user.last_name.capitalize %></p>
+        <p><%= booking.camera.user.address %></p>
+        <p><%= booking.camera.user.phone_number %></p>
+        <p><%= booking.camera.user.email %></p>
+       </p>
       </div>
     </div>
+   <% end %>
   </div>
+</div>
+
+
+
+
+<div class="container">
+  <div class="hidden tab-content" id="my-camera-offer">
+    <h2> My Equipment </h2>
+    <div class="row">
+      <% @user.cameras.each do |camera| %>
+       <div class="col-xs-12 col-md-3">
+        <div class="padded">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_url 'camera.jpg' %>)">
+          <div class="card-brand"><p> Brand: <%= camera.brand %></p></div>
+          <div class="card-category"><p><%= camera.category %></p></div>
+          <div class="card-price"><p> Price: <%= camera.price %>€/day</p></div>
+        </div>
+        <%= link_to '<i class="fa fa-trash" aria-hidden="true"></i>'.html_safe, user_camera_path(current_user, camera), method: :delete, data: { confirm: "Are you sure to delete this camera?" }%>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
 </div>
 
