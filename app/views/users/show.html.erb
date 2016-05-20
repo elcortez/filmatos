@@ -18,11 +18,9 @@
 
 
 
-  <div class="container text-center padding-bottom-30">
+  <div class="container text-center">
     <div class="tab-content unstyled-list" id="profile">
-      <h2> My details </h2>
-      <br>
-      <br>
+      <h2> My details </h2><br><br>
       <div class="row">
         <div class="col-md-4 col-md-offset-1">
           <div class="profile-avatar" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)),
@@ -61,10 +59,6 @@
       </div>
     </div>
 
-  </div>
-
-
-
 
 
 <div class="container text-center">
@@ -82,23 +76,25 @@
         </div>
 
         <div class="col-md-6">
-          <p>
-            <strong>Status</strong>:
-            <% if booking.status == 'pending' %>
-              <%= booking.status.capitalize %><br>
-              <button type="button" class="btn btn-success"><%= link_to "Accept", camera_booking_accepted_path(booking) %></button>
+          <div class="card-contact">
+            <p>
+              <strong>Status</strong>:
+              <% if booking.status == 'pending' %>
+                <%= booking.status.capitalize %><br>
+                <button type="button" class="btn btn-success"><%= link_to "Accept", camera_booking_accepted_path(booking) %></button>
 
-              <button type="button" class="btn btn-danger"><%= link_to "Decline", camera_booking_declined_path(booking)  %></button>
-            <% else %>
-              <%= booking.status.capitalize %>
-            <% end %>
-           </p>
-          <p> <strong>Start date:</strong> <%= booking.start_date %> | <strong>End date:</strong> <%= booking.end_date %> </p>
-          <p><strong>Renter</strong></p>
-          <p><%= booking.user.first_name.capitalize %> <%= booking.user.last_name.capitalize %></p>
-          <p><%= booking.user.address %></p>
-          <p><%= booking.user.phone_number %></p>
-          <p><%= booking.user.email %></p>
+                <button type="button" class="btn btn-danger"><%= link_to "Decline", camera_booking_declined_path(booking)  %></button>
+              <% else %>
+                <%= booking.status.capitalize %>
+              <% end %>
+             </p>
+            <p> <strong>Start date:</strong> <%= booking.start_date %> | <strong>End date:</strong> <%= booking.end_date %> </p>
+            <p><strong>Renter</strong></p>
+            <p><%= booking.user.first_name.capitalize %> <%= booking.user.last_name.capitalize %></p>
+            <p><%= booking.user.address %></p>
+            <p><%= booking.user.phone_number %></p>
+            <p><%= booking.user.email %></p>
+          </div>
         </div>
       </div>
       <% end %>
@@ -127,20 +123,21 @@
         </div>
       </div>
       <div class="col-md-6">
-        <p><strong>Status</strong>: <%= booking.status.capitalize %> </p>
-       <p><strong>Start date:</strong> <%= booking.start_date %> | <strong>End date:</strong> <%= booking.end_date %></p>
-        <p><strong>Owner</strong> </p>
-        <p><%= booking.camera.user.first_name.capitalize %> <%= booking.camera.user.last_name.capitalize %></p>
-        <p><%= booking.camera.user.address %></p>
-        <p><%= booking.camera.user.phone_number %></p>
-        <p><%= booking.camera.user.email %></p>
-       </p>
+        <div class="card-contact">
+          <p><strong>Status</strong>: <%= booking.status.capitalize %> </p>
+         <p><strong>Start date:</strong> <%= booking.start_date %> | <strong>End date:</strong> <%= booking.end_date %></p>
+          <p><strong>Owner</strong> </p>
+          <p><%= booking.camera.user.first_name.capitalize %> <%= booking.camera.user.last_name.capitalize %></p>
+          <p><%= booking.camera.user.address %></p>
+          <p><%= booking.camera.user.phone_number %></p>
+          <p><%= booking.camera.user.email %></p>
+          </p>
+        </div>
       </div>
     </div>
    <% end %>
   </div>
 </div>
-
 
 
 
@@ -151,8 +148,14 @@
       <% @user.cameras.each do |camera| %>
        <div class="col-xs-12 col-md-3">
         <div class="padded">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= asset_url 'camera.jpg' %>)">
-          <div class="card-brand"><p><a class="card" href="<%=camera_path(camera)%>", target="_blank">  Brand: <%= camera.brand %></a></p></div>
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+          <% if camera.photo? %>
+            url(<%= cl_image_path camera.photo.path, height: 300, width: 400, crop: :fill %>)
+          <% else %>
+            url(<%= asset_url 'camera.jpg' %>)
+          <% end %>
+        ">
+          <div class="card-brand"><p> Brand: <%= camera.brand %></p></div>
           <div class="card-category"><p><%= camera.category %></p></div>
           <div class="card-price"><p> Price: <%= camera.price %>€/day</p></div>
         </div>
@@ -164,6 +167,5 @@
   </div>
 </div>
 
-</div>
 </div>
 
