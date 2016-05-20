@@ -4,7 +4,7 @@ class CamerasController < ApplicationController
 
   def index
     load_cameras
-    @users = User.near(params[:location], 5)
+    params[:location].blank? ? @users = User.all : @users = User.near(params[:location], 5)
     # Definition of near cameras
     @near_cameras = []
     @cameras.each do |camera|
@@ -16,8 +16,10 @@ class CamerasController < ApplicationController
       @near_cameras_available << camera if camera.available?(params[:start_date], params[:end_date])
     end
     # Categories and brands useful for the filter
-    @categories = Camera.categories
-    @brands = Camera.brands
+    @categories = ["Camera", "Accessory", "Lense", "Tripod"]
+    # @categories = Camera.categories # will search in DB, does not work well
+    @brands = ["Aaton", "Arri", "RED", "Nikkon", "Canon", "Black Magic"]
+    # @brands = Camera.brands # will search in DB, does not work well
 
     # Let's DYNAMICALLY build the markers for the view.
     @markers = Gmaps4rails.build_markers(@near_cameras) do |camera, marker|
@@ -34,8 +36,8 @@ class CamerasController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @camera = Camera.new
-    @brands = Camera.brands
-    @categories = Camera.categories
+    @brands = ["Aaton", "Arri", "RED", "Nikkon", "Canon", "Black Magic"]
+    @categories = ["Camera", "Accessory", "Lense", "Tripod"]
   end
 
   def create
