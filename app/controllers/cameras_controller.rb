@@ -16,7 +16,8 @@ class CamerasController < ApplicationController
       @near_cameras_available << camera if camera.available?(params[:start_date], params[:end_date])
     end
     # Categories and brands useful for the filter
-    @categories = Camera.categories
+    @categories = ["Camera", "Accessory", "Lense", "Tripod"]
+    # @categories = Camera.categories
     @brands = Camera.brands
 
     # Let's DYNAMICALLY build the markers for the view.
