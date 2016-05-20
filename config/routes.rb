@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :cameras, only: [:index, :show] do
     resources :bookings, only: [:create]
+    resources :reviews, only: [:create]
   end
 
   get '/bookings/:id/accepted/' => 'bookings#mark_as_accepted', as: :camera_booking_accepted

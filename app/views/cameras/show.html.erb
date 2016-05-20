@@ -14,11 +14,28 @@
         <div class="card-stats">
           <div class="stats-reviews list-inline">
             <ul>
-              <i class="fa fa-star icon-full" aria-hidden="true"></i>
-              <i class="fa fa-star icon-full" aria-hidden="true"></i>
-              <i class="fa fa-star icon-full" aria-hidden="true"></i>
-              <i class="fa fa-star-half-o icon-half" aria-hidden="true"></i>
-              <i class="fa fa-star-o icon-empty" aria-hidden="true"></i>
+              <p>
+                <% if @camera.reviews.count == 0 %>
+                  <% mean = 0 %>
+                <% else %>
+                  <% sum = 0 %>
+                  <% @camera.reviews.each do |review| %>
+                    <% sum += review.rating %>
+                  <% end %>
+                  <% mean = sum / @camera.reviews.count %>
+                <% end %>
+                Average rating:
+                <span>
+                  <% empty_stars_mean = 5 - mean %>
+                  <% mean.times do %>
+                    <i class="fa fa-heart" aria-hidden="true" style="color: #FF0000"></i>
+                  <% end %>
+                  <% empty_stars_mean.times do %>
+                    <i class="fa fa-heart" aria-hidden="true" style="color: #E6E6E6"></i>
+                  <% end %>
+                </span>
+                (<%= @camera.reviews.count %>)
+              </p>
             </ul>
           </div>
           <div class="stats-name">
@@ -100,8 +117,64 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-3">
+        <div class="padded text-center">
+          <div class="card-white">
+            <div id="review-list">
+              <!-- Beginning of review list -->
+
+              <h3>Read all <strong><%= @camera.reviews.count %></strong> review(s)</h3>
+              <ul class="list-unstyled">
+                <% @camera.reviews.each do |review| %>
+                <li>
+                  <%= image_tag 'http://lorempixel.com/300/300/people/', {class: "avatar-large"} %>
+
+                  <% empty_stars = 5 - review.rating %>
+                  <% review.rating.times do %>
+                    <i class="fa fa-heart" aria-hidden="true" style="color: #FF0000"></i>
+                  <% end %>
+                  <% empty_stars.times do %>
+                    <i class="fa fa-heart" aria-hidden="true" style="color: #E6E6E6"></i>
+                  <% end %>
+                  - <%= review.content %>
+                  <p style="color: #CCCCCC; font-size: 0.8em; display: inline;">
+                    - posted on <%= review.created_at.strftime('%B %e at %l:%M %p') %>
+                  </p>
+                  <hr>
+                </li>
+                <% end %>
+              </ul>
+
+              <!-- End of review list
+              Beginning of add-a-new-review form -->
+
+              <h4><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i> Add a review for this camera</h4>
+              <%= simple_form_for([@camera, @review]) do |f| %>
+                <%= f.error_notification %>
+                <fieldset class="form-group">
+                  <%= f.input :content, placeholder: 'Did you like it?', class: 'form-control' %>
+                  <%= f.input :rating, collection: [0, 1, 2, 3, 4, 5], prompt: "Choose the rating", class: 'form-control' %>
+                </fieldset>
+                <%= f.button :submit %>
+              <% end %>
+              <!-- End of add-a-new-review form -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
 
 
 
