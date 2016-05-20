@@ -62,4 +62,21 @@ class User < ActiveRecord::Base
     sentence
   end
 
+  def sales
+    sales = 0
+    if !self.cameras.empty?
+      self.cameras.each do |camera|
+        if !camera.bookings.empty?
+          camera.bookings.each do |booking|
+            if booking.status == 'accepted'
+              booking_start_date = Date.new(("20" + booking.start_date[6..-1]).to_i, booking.start_date[3..4].to_i, booking.start_date[0..1].to_i)
+              booking_end_date = Date.new(("20" + booking.end_date[6..-1]).to_i, booking.end_date[3..4].to_i, booking.end_date[0..1].to_i)
+              sales += (booking_end_date - booking_start_date).to_i * camera.price
+            end
+          end
+        end
+      end
+    end
+    sales
+  end
 end
