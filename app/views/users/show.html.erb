@@ -113,7 +113,13 @@
 
     <div class="row">
       <div class="col-md-6">
-        <div class="card card-booked-product" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= cl_image_path booking.camera.photo.path %>)">
+        <div class="card card-booked-product" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+          <% if booking.camera.photo? %>
+            url(<%= cl_image_path camera.photo.path, height: 300, width: 400, crop: :fill %>)
+          <% else %>
+            url(<%= asset_url 'camera.jpg' %>)
+          <% end %>
+        ">
         <div class="card-brand"><p><%= booking.camera.brand %></p></div>
         </div>
       </div>
@@ -150,7 +156,7 @@
             url(<%= asset_url 'camera.jpg' %>)
           <% end %>
         ">
-          <div class="card-brand"><p> Brand: <%= camera.brand %></p></div>
+          <div class="card-brand"><p>  Brand: <%= camera.brand %></p></div>
           <div class="card-category"><p><%= camera.category %></p></div>
           <div class="card-price"><p> Price: <%= camera.price %>€/day</p></div>
         </div>
