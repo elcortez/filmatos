@@ -3,7 +3,7 @@ class Camera < ActiveRecord::Base
   has_many :bookings
   has_many :users, through: :bookings
   has_attachment :photo
-  validates :brand, presence: true
+  validates :brand, presence: true, inclusion: { in: ["Aaton", "Arri", "RED", "Nikkon", "Canon", "Black Magic"]}
   validates :category, presence: true, inclusion: { in: ["Camera", "Accessory", "Lense", "Tripod"]}
   validates :description, presence: true
   validates :price, presence: true
