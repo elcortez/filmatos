@@ -81,9 +81,9 @@
               <strong>Status</strong>:
               <% if booking.status == 'pending' %>
                 <%= booking.status.capitalize %><br>
-                <button type="button" class="btn btn-success"><%= link_to "Accept", camera_booking_accepted_path(booking) %></button>
+                <button type="button" class="btn btn-success accept-buttons"><%= link_to "Accept", camera_booking_accepted_path(booking) %></button>
 
-                <button type="button" class="btn btn-danger"><%= link_to "Decline", camera_booking_declined_path(booking)  %></button>
+                <button type="button" class="btn btn-danger accept-buttons"><%= link_to "Decline", camera_booking_declined_path(booking)  %></button>
               <% else %>
                 <%= booking.status.capitalize %>
               <% end %>
@@ -115,12 +115,13 @@
       <div class="col-md-6">
         <div class="card card-booked-product" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
           <% if booking.camera && booking.camera.photo? %>
-            url(<%= cl_image_path camera.photo.path, height: 300, width: 400, crop: :fill %>)
+            url(<%= cl_image_path booking.camera.photo.path, height: 300, width: 400, crop: :fill %>)
           <% else %>
             url(<%= asset_url 'camera.jpg' %>)
           <% end %>
         ">
         <div class="card-brand"><p><%= booking.camera ? booking.camera.brand : 'Item deleted' %></p></div>
+
         </div>
       </div>
       <div class="col-md-6">
@@ -162,7 +163,8 @@
             url(<%= asset_url 'camera.jpg' %>)
           <% end %>
         ">
-          <div class="card-brand"><p>  Brand: <%= camera.brand %></p></div>
+          <div class="card-brand"><p><%= link_to "Brand : #{camera.brand}", camera_path(camera) %> </p></div>
+
           <div class="card-category"><p><%= camera.category %></p></div>
           <div class="card-price"><p> Price: <%= camera.price %>€/day</p></div>
         </div>
