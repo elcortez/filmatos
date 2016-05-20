@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
             if booking.status == 'accepted'
               booking_start_date = Date.new(("20" + booking.start_date[6..-1]).to_i, booking.start_date[3..4].to_i, booking.start_date[0..1].to_i)
               booking_end_date = Date.new(("20" + booking.end_date[6..-1]).to_i, booking.end_date[3..4].to_i, booking.end_date[0..1].to_i)
-              sales += (booking_end_date - booking_start_date) * camera.price
+              sales += (booking_end_date - booking_start_date).to_i * camera.price
             end
           end
         end
