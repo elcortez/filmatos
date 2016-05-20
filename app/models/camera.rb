@@ -1,6 +1,7 @@
 class Camera < ActiveRecord::Base
   belongs_to :user
   has_many :bookings
+  has_many :reviews, dependent: :destroy
   has_many :users, through: :bookings
   has_attachment :photo
   validates :brand, presence: true, inclusion: { in: ["Aaton", "Arri", "RED", "Nikkon", "Canon", "Black Magic"]}

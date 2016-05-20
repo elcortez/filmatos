@@ -31,6 +31,7 @@ class CamerasController < ApplicationController
   def show
     @camera = Camera.find(params[:id])
     @booking = Booking.new
+    @review = Review.new
   end
 
   def new
