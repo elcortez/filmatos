@@ -88,7 +88,9 @@
             <% if @camera.user.photo? %>
                 <%= cl_image_tag @camera.user.photo.path, class: "show-card-avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
               <% else %>
-                <img src="http://www.placehold.it/50/50" alt="">
+                <div class="show-card-avatar">
+                  <img src="http://lorempixel.com/50/50/people" alt="">
+                </div>
               <% end %>
             <h3>Owner's details: </h3>
             <p>Full name: <%= @camera.user.first_name %><%= @camera.user.last_name %></p>
