@@ -1,6 +1,6 @@
 class Camera < ActiveRecord::Base
   belongs_to :user
-  has_many :bookings
+  has_many :bookings, dependent: :nullify
   has_many :reviews, dependent: :destroy
   has_many :users, through: :bookings
   has_attachment :photo
