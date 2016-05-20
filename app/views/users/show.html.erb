@@ -1,58 +1,67 @@
-
-<div class="container text-center">
-  <div class="tabs">
-    <a class="tab active" data-target="#profile">
-      <h3>My profile</h3>
-    </a>
-    <a class="tab" data-target="#my-bookings">
-      <h3>They booked <span style="color:#EE5F5B">my</span> products</h3>
-    </a>
-    <a class="tab" data-target="#my-rentals">
-      <h3>I booked <span style="color:#EE5F5B">their</span> products</h3>
-    </a>
-    <a class="tab" data-target="#my-camera-offer">
-      <h3>My Equipment</h3>
-    </a>
-  </div>
-</div>
-
-<div class="container text-center">
-  <div class="tab-content unstyled-list" id="profile">
-    <h2> My details </h2>
-    <div class="row">
-      <div class="col-md-7">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2) 50%),
-          <% if current_user.photo? %>
-            url(<%= cl_image_path current_user.photo.path, height: 300, width: 400, crop: :fill %>)
-          <% else %>
-            url(<%= cl_image_path "#", height: 300, width: 400, crop: :fill %>)
-          <% end %>
-        ">
-        </div>
-      </div>
-      <div class="col-md-5">
-      <ul class="list-unstyled text-left">
-        <li><p><%= @user.first_name %></p></li>
-        <li><p><%= @user.last_name %></p></li>
-        <li><p><i class="fa fa-phone" aria-hidden="true"></i> <%= @user.phone_number %></li>
-        <li><p><i class="fa fa-home" aria-hidden="true"></i> <%= @user.address %></p></li>
-        <li><p><i class="fa fa-envelope-o" aria-hidden="true"></i> <%= @user.email %></p></li>
-      </ul>
-      </div>
+<div class="wrapper-light-grey">
+  <div class="container text-center">
+    <div class="tabs">
+      <a class="tab active" data-target="#profile">
+        <h3>My profile</h3>
+      </a>
+      <a class="tab" data-target="#my-bookings">
+        <h3>They booked <span style="color:#EE5F5B">my</span> products</h3>
+      </a>
+      <a class="tab" data-target="#my-rentals">
+        <h3>I booked <span style="color:#EE5F5B">their</span> products</h3>
+      </a>
+      <a class="tab" data-target="#my-camera-offer">
+        <h3>My Equipment</h3>
+      </a>
     </div>
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <div class="profile-content padded">
-          <p>My stats (average acceptance):</p>
-          <ul>
-            <li>As an owner : <%= @user.stats_as_owner %> </li>
-            <li>As a renter : <%= @user.stats_as_renter %> </li>
+  </div>
+
+
+  <div class="container text-center padding-bottom-30">
+    <div class="tab-content unstyled-list" id="profile">
+      <h2> My details </h2>
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+          <div class="profile-avatar" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)),
+            <% if current_user.photo? %>
+              url(<%= cl_image_path current_user.photo.path, height: 300, width: 400, crop: :fill %>)
+            <% else %>
+              url(<%= cl_image_path "#", height: 300, width: 400, crop: :fill %>)
+            <% end %>
+          ">
+          </div>
+        </div>
+          <div class="col-md-5">
+        <div class="card-contact">
+          <ul class="list-unstyled text-left">
+            <li><p><i class="fa fa-user" aria-hidden="true"></i> <%= @user.first_name %> <%= @user.last_name %></p></li>
+            <li><p><i class="fa fa-phone" aria-hidden="true"></i> <%= @user.phone_number %></li>
+            <li><p><i class="fa fa-home" aria-hidden="true"></i> <%= @user.address %></p></li>
+            <li><p><i class="fa fa-envelope-o" aria-hidden="true"></i> <%= @user.email %></p></li>
           </ul>
         </div>
+
+        <div class="card-contact">
+          <ul class="list-unstyled text-left">
+            <li><p><i class="fa fa-book" aria-hidden="true"></i> My stats (average acceptance):</p></li>
+            <li>As an owner : <%= @user.stats_as_owner %> </li>
+            <li>As a renter  : <%= @user.stats_as_renter %> </li>
+          </ul>
+        </div>
+
+        <div class="card-website">
+          <ul class="list-unstyled text-left">
+            <li><p><i class="fa fa-feed" aria-hidden="true"></i> Website: www.filmatos.com</p> </li>
+          </ul>
+        </div>
+        </div>
       </div>
     </div>
+
   </div>
-</div>
+
 
 
 
@@ -148,5 +157,6 @@
     </div>
   </div>
 
+</div>
 </div>
 

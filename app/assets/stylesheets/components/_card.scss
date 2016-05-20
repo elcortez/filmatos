@@ -160,28 +160,39 @@
 
 
 //card dashboard profile
-.card-first-name{
-  position: absolute;
-  left: 10px;
-  top: 10px;
+.card-contact{
+  position: relative;
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
-.card-last-name{
-  position: absolute;
-  left: 10px;
-  top: 30px;
+.card-website{
+  position: relative;
+  background: white;
+  padding-left: 20px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
-.card-address{
-  position: absolute;
-  left: 10px;
-  bottom: 20px;
-}
-.card-number{
-  position: absolute;
-  left: 10px;
-  bottom: 10px;
-}
-.card-email{
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-}
+// .card-last-name{
+//   position: absolute;
+//   left: 10px;
+//   top: 30px;
+// }
+// .card-address{
+//   position: absolute;
+//   left: 10px;
+//   bottom: 20px;
+// }
+// .card-number{
+//   position: absolute;
+//   left: 10px;
+//   bottom: 10px;
+// }
+// .card-email{
+//   position: absolute;
+//   right: 10px;
+//   bottom: 10px;
+// }
