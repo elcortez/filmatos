@@ -12,23 +12,26 @@
             <%= text_field_tag :location, params[:location], placeholder: 'Paris...', class: 'form-control input-lg' %>
           </fieldset>
           <fieldset class="form-group flex-item-3">
-            <label for="description">Dates</label>
+            <label for="description">From...</label>
             <%= text_field_tag :start_date, params[:start_date], placeholder: 'From...', class: 'form-control input-lg datepicker' %>
+            </fieldset>
+            <fieldset class="form-group flex-item-3">
+          <label for="description">To...</label>
           <%= text_field_tag :end_date, params[:end_date], placeholder: 'To...', class: 'form-control input-lg datepicker' %>
           </fieldset>
         </div>
         <div class="form-flex">
           <fieldset class="form-group flex-item-3">
             <label for="description">Description</label>
-            <%= text_field_tag :description, params[:description], class: "form-control" %>
+            <%= text_field_tag :description, params[:description], placeholder: 'Camera...', class: "form-control input-lg" %>
           </fieldset>
           <fieldset class="form-group flex-item-3">
             <label for="price_min">Minimum price</label>
-            <%= text_field_tag :price_min, params[:price_min], class: "form-control" %>
+            <%= text_field_tag :price_min, params[:price_min], placeholder: '€', class: "form-control input-lg" %>
           </fieldset>
           <fieldset class="form-group flex-item-3">
             <label for="price_max">Maximum price</label>
-            <%= text_field_tag :price_max, params[:price_max], class: "form-control" %>
+            <%= text_field_tag :price_max, params[:price_max], placeholder: '€', class: "form-control input-lg" %>
           </fieldset>
         </div>
         <p>
